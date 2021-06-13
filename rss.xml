@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+
+
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Doomdesire</title>
+        <link>https://netuserdoomdesire.github.io/</link>
+        <description>MemE is a powerful and highly customizable GoHugo theme for personal blogs.</description>
+        <generator>Hugo 0.83.1 https://gohugo.io/</generator>
+        
+            <language>en</language>
+        
+        
+        
+        
+            <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</copyright>
+        
+        <lastBuildDate>Sun, 13 Jun 2021 22:19:24 &#43;0300</lastBuildDate>
+        
+            <atom:link rel="self" type="application/rss&#43;xml" href="https://netuserdoomdesire.github.io/rss.xml" />
+        
+        
+            <item>
+                <title>Sample Post</title>
+                <link>https://netuserdoomdesire.github.io/categories/sample-post/</link>
+                <guid isPermaLink="true">https://netuserdoomdesire.github.io/categories/sample-post/</guid>
+                <pubDate>Wed, 09 Jun 2021 20:26:52 &#43;0300</pubDate>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</copyright>
+                
+                    <description>&lt;h1 id=&#34;title&#34;&gt;Title&lt;/h1&gt;
+&lt;p&gt;This is a sample post.&lt;/p&gt;
+</description>
+                
+                
+                
+                    
+                    
+                    
+                        
+                        
+                        
+                            
+                                <category domain="https://netuserdoomdesire.github.io/categories/writeups/">categories\Writeups\</category>
+                            
+                        
+                    
+                
+                
+                
+                    
+                        
+                    
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>Second Sample Post</title>
+                <link>https://netuserdoomdesire.github.io/categories/second-sample-post/</link>
+                <guid isPermaLink="true">https://netuserdoomdesire.github.io/categories/second-sample-post/</guid>
+                <pubDate>Wed, 09 Jun 2021 20:26:52 &#43;0300</pubDate>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</copyright>
+                
+                    <description>&lt;h1 id=&#34;title&#34;&gt;Title&lt;/h1&gt;
+&lt;p&gt;This is the second sample post&lt;/p&gt;
+</description>
+                
+                
+                
+                    
+                    
+                    
+                        
+                        
+                        
+                            
+                                <category domain="https://netuserdoomdesire.github.io/categories/general/">categories\General\</category>
+                            
+                        
+                    
+                
+                
+                
+                    
+                        
+                    
+                        
+                    
+                
+            </item>
+        
+    </channel>
+</rss>
