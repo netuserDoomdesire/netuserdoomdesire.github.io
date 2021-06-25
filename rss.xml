@@ -17,23 +17,22 @@
         
         
         
-            <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</copyright>
+            <copyright>“Don&#39;t fear failure. Not failure, but low aim, is the crime. In great attempts it is glorious even to fail.”</copyright>
         
-        <lastBuildDate>Sun, 13 Jun 2021 22:35:55 &#43;0300</lastBuildDate>
+        <lastBuildDate>Fri, 25 Jun 2021 12:08:14 &#43;0300</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://netuserdoomdesire.github.io/rss.xml" />
         
         
             <item>
-                <title>Sample Post</title>
-                <link>https://netuserdoomdesire.github.io/categories/sample-post/</link>
-                <guid isPermaLink="true">https://netuserdoomdesire.github.io/categories/sample-post/</guid>
+                <title>Upcoming Post (Offensive Technique)</title>
+                <link>https://netuserdoomdesire.github.io/posts/general/upcoming/</link>
+                <guid isPermaLink="true">https://netuserdoomdesire.github.io/posts/general/upcoming/</guid>
                 <pubDate>Wed, 09 Jun 2021 20:26:52 &#43;0300</pubDate>
                 
-                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</copyright>
+                <copyright>“Don&#39;t fear failure. Not failure, but low aim, is the crime. In great attempts it is glorious even to fail.”</copyright>
                 
-                    <description>&lt;h1 id=&#34;title&#34;&gt;Title&lt;/h1&gt;
-&lt;p&gt;This is a sample post.&lt;/p&gt;
+                    <description>&lt;p&gt;Upcoming Post (Offensive Technique)&lt;/p&gt;
 </description>
                 
                 
@@ -45,7 +44,7 @@
                         
                         
                             
-                                <category domain="https://netuserdoomdesire.github.io/categories/writeups/">categories\Writeups\</category>
+                                <category domain="https://netuserdoomdesire.github.io/posts/general/">posts\General\</category>
                             
                         
                     
@@ -61,15 +60,14 @@
             </item>
         
             <item>
-                <title>Second Sample Post</title>
-                <link>https://netuserdoomdesire.github.io/categories/second-sample-post/</link>
-                <guid isPermaLink="true">https://netuserdoomdesire.github.io/categories/second-sample-post/</guid>
+                <title>Upcoming: Spectra Writeup (HackTheBox)</title>
+                <link>https://netuserdoomdesire.github.io/posts/writeups/spectra/</link>
+                <guid isPermaLink="true">https://netuserdoomdesire.github.io/posts/writeups/spectra/</guid>
                 <pubDate>Wed, 09 Jun 2021 20:26:52 &#43;0300</pubDate>
                 
-                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</copyright>
+                <copyright>“Don&#39;t fear failure. Not failure, but low aim, is the crime. In great attempts it is glorious even to fail.”</copyright>
                 
-                    <description>&lt;h1 id=&#34;title&#34;&gt;Title&lt;/h1&gt;
-&lt;p&gt;This is the second sample post&lt;/p&gt;
+                    <description>&lt;p&gt;HackTheBox Spectra writeup will be uploaded on 26/6/2021&lt;/p&gt;
 </description>
                 
                 
@@ -81,7 +79,7 @@
                         
                         
                             
-                                <category domain="https://netuserdoomdesire.github.io/categories/general/">categories\General\</category>
+                                <category domain="https://netuserdoomdesire.github.io/posts/writeups/">posts\Writeups\</category>
                             
                         
                     

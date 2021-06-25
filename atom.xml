@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <title type="text">Doomdesire</title>
     <subtitle type="html">MemE is a powerful and highly customizable GoHugo theme for personal blogs.</subtitle>
-    <updated>2021-06-13T22:35:55&#43;03:00</updated>
+    <updated>2021-06-25T12:08:14&#43;03:00</updated>
     <id>https://netuserdoomdesire.github.io/</id>
     <link rel="alternate" type="text/html" href="https://netuserdoomdesire.github.io/" />
     <link rel="self" type="application/atom&#43;xml" href="https://netuserdoomdesire.github.io/atom.xml" />
@@ -12,22 +12,21 @@
             <name>Doomdesire</name>
             <uri>https://netuserdoomdesire.github.io/</uri>
             </author>
-    <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights>
+    <rights>“Don&#39;t fear failure. Not failure, but low aim, is the crime. In great attempts it is glorious even to fail.”</rights>
     <generator uri="https://gohugo.io/" version="0.83.1">Hugo</generator>
         <entry>
-            <title type="text">Sample Post</title>
-            <link rel="alternate" type="text/html" href="https://netuserdoomdesire.github.io/categories/sample-post/" />
-            <id>https://netuserdoomdesire.github.io/categories/sample-post/</id>
-            <updated>2021-06-13T22:11:06&#43;03:00</updated>
+            <title type="text">Upcoming Post (Offensive Technique)</title>
+            <link rel="alternate" type="text/html" href="https://netuserdoomdesire.github.io/posts/general/upcoming/" />
+            <id>https://netuserdoomdesire.github.io/posts/general/upcoming/</id>
+            <updated>2021-06-25T11:56:47&#43;03:00</updated>
             <published>2021-06-09T20:26:52&#43;03:00</published>
             <author>
                     <name>Doomdesire</name>
                     <uri>https://netuserdoomdesire.github.io/</uri>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">Title This is a sample post.</summary>
+            <rights>“Don&#39;t fear failure. Not failure, but low aim, is the crime. In great attempts it is glorious even to fail.”</rights><summary type="html">Upcoming Post (Offensive Technique)</summary>
             
-                <content type="html">&lt;h1 id=&#34;title&#34;&gt;Title&lt;/h1&gt;
-&lt;p&gt;This is a sample post.&lt;/p&gt;
+                <content type="html">&lt;p&gt;Upcoming Post (Offensive Technique)&lt;/p&gt;
 </content>
             
             
@@ -39,7 +38,7 @@
                     
                     
                         
-                            <category scheme="https://netuserdoomdesire.github.io/categories/writeups/" term="categories\Writeups\" label="categories\Writeups\" />
+                            <category scheme="https://netuserdoomdesire.github.io/posts/general/" term="posts\General\" label="posts\General\" />
                         
                     
                 
@@ -55,19 +54,18 @@
         </entry>
     
         <entry>
-            <title type="text">Second Sample Post</title>
-            <link rel="alternate" type="text/html" href="https://netuserdoomdesire.github.io/categories/second-sample-post/" />
-            <id>https://netuserdoomdesire.github.io/categories/second-sample-post/</id>
-            <updated>2021-06-13T22:11:45&#43;03:00</updated>
+            <title type="text">Upcoming: Spectra Writeup (HackTheBox)</title>
+            <link rel="alternate" type="text/html" href="https://netuserdoomdesire.github.io/posts/writeups/spectra/" />
+            <id>https://netuserdoomdesire.github.io/posts/writeups/spectra/</id>
+            <updated>2021-06-25T11:59:50&#43;03:00</updated>
             <published>2021-06-09T20:26:52&#43;03:00</published>
             <author>
                     <name>Doomdesire</name>
                     <uri>https://netuserdoomdesire.github.io/</uri>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">Title This is the second sample post</summary>
+            <rights>“Don&#39;t fear failure. Not failure, but low aim, is the crime. In great attempts it is glorious even to fail.”</rights><summary type="html">HackTheBox Spectra writeup will be uploaded on 26/6/2021</summary>
             
-                <content type="html">&lt;h1 id=&#34;title&#34;&gt;Title&lt;/h1&gt;
-&lt;p&gt;This is the second sample post&lt;/p&gt;
+                <content type="html">&lt;p&gt;HackTheBox Spectra writeup will be uploaded on 26/6/2021&lt;/p&gt;
 </content>
             
             
@@ -79,7 +77,7 @@
                     
                     
                         
-                            <category scheme="https://netuserdoomdesire.github.io/categories/general/" term="categories\General\" label="categories\General\" />
+                            <category scheme="https://netuserdoomdesire.github.io/posts/writeups/" term="posts\Writeups\" label="posts\Writeups\" />
                         
                     
                 
