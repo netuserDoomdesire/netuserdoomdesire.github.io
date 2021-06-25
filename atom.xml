@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <title type="text">Doomdesire</title>
     <subtitle type="html">MemE is a powerful and highly customizable GoHugo theme for personal blogs.</subtitle>
-    <updated>2021-06-25T12:08:14&#43;03:00</updated>
+    <updated>2021-06-25T12:13:26&#43;03:00</updated>
     <id>https://netuserdoomdesire.github.io/</id>
     <link rel="alternate" type="text/html" href="https://netuserdoomdesire.github.io/" />
     <link rel="self" type="application/atom&#43;xml" href="https://netuserdoomdesire.github.io/atom.xml" />
@@ -12,7 +12,7 @@
             <name>Doomdesire</name>
             <uri>https://netuserdoomdesire.github.io/</uri>
             </author>
-    <rights>“Don&#39;t fear failure. Not failure, but low aim, is the crime. In great attempts it is glorious even to fail.”</rights>
+    
     <generator uri="https://gohugo.io/" version="0.83.1">Hugo</generator>
         <entry>
             <title type="text">Upcoming Post (Offensive Technique)</title>
@@ -24,7 +24,7 @@
                     <name>Doomdesire</name>
                     <uri>https://netuserdoomdesire.github.io/</uri>
                     </author>
-            <rights>“Don&#39;t fear failure. Not failure, but low aim, is the crime. In great attempts it is glorious even to fail.”</rights><summary type="html">Upcoming Post (Offensive Technique)</summary>
+            <summary type="html">Upcoming Post (Offensive Technique)</summary>
             
                 <content type="html">&lt;p&gt;Upcoming Post (Offensive Technique)&lt;/p&gt;
 </content>
@@ -63,7 +63,7 @@
                     <name>Doomdesire</name>
                     <uri>https://netuserdoomdesire.github.io/</uri>
                     </author>
-            <rights>“Don&#39;t fear failure. Not failure, but low aim, is the crime. In great attempts it is glorious even to fail.”</rights><summary type="html">HackTheBox Spectra writeup will be uploaded on 26/6/2021</summary>
+            <summary type="html">HackTheBox Spectra writeup will be uploaded on 26/6/2021</summary>
             
                 <content type="html">&lt;p&gt;HackTheBox Spectra writeup will be uploaded on 26/6/2021&lt;/p&gt;
 </content>
