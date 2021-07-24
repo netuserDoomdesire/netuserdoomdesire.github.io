@@ -17,7 +17,7 @@
         
         
         
-        <lastBuildDate>Sat, 24 Jul 2021 18:53:12 &#43;0300</lastBuildDate>
+        <lastBuildDate>Sat, 24 Jul 2021 19:03:55 &#43;0300</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://netuserdoomdesire.github.io/rss.xml" />
         
@@ -329,7 +329,7 @@ watchdog
 &lt;p&gt;As with many other boxes, the very first thing to check, is if the user can run anything with sudo:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Armageddon/13.png&#34; alt=&#34;Pasted image 20210724061138.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;It seems we can run &lt;strong&gt;/usr/bin/snap install *&lt;/strong&gt; with root privileges. Reading from the Snap page, &amp;ldquo;Snaps are cross-distribution, dependency-free, and easy to install applications packaged with all their dependencies to run on all major Linux distributions. As the current user it appears we can install .snap files.&lt;/p&gt;
-&lt;p&gt;Searching for any vulnerability online, we get across this exploit &lt;a href=&#34;https://github.com/initstring/dirty_sock&#34;&gt;https://github.com/initstring/dirty_sock&lt;/a&gt;. The exploit is going to allow us to install .snap file to the system, which when installed, is going to add a new user with sudo privileges to the system. The problem that emerged here is that this exploit requires python3 which we do not have on the target system. Reading the exploit &amp;ldquo;dirty_sockv2.py&amp;rdquo; from the github page we see that it includes a base64 encoded string:&lt;/p&gt;
+&lt;p&gt;Searching for any vulnerability online, we get across this exploit &lt;a href=&#34;https://github.com/initstring/dirty_sock&#34;&gt;https://github.com/initstring/dirty_sock&lt;/a&gt;. while this particular exploit is not the one we want to use here, it can help us, because it uses a payload that is in fact a malicious snap package. Reading the exploit &amp;ldquo;dirty_sockv2.py&amp;rdquo; from the github page we see that it includes a base64 encoded string:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Armageddon/14.png&#34; alt=&#34;Pasted image 20210724065759.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;with the following description:
 &lt;code&gt;The following global is a base64 encoded string representing an installable snap package. The snap itself is empty and has no functionality. It does, however, have a bash-script in the install hook that will create a new user.&lt;/code&gt;&lt;/p&gt;
