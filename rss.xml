@@ -17,7 +17,7 @@
         
         
         
-        <lastBuildDate>Sat, 07 Aug 2021 22:13:28 &#43;0300</lastBuildDate>
+        <lastBuildDate>Sat, 07 Aug 2021 22:20:51 &#43;0300</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://netuserdoomdesire.github.io/rss.xml" />
         
@@ -33,7 +33,7 @@
                     <description>&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Love/1.png&#34; alt=&#34;Pasted image 20210803061156.png&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
 &lt;p&gt;Machine: &lt;a href=&#34;https://www.hackthebox.eu/home/machines/profile/344&#34;&gt;https://www.hackthebox.eu/home/machines/profile/344&lt;/a&gt;
-Love is an easy HackTheBox Windows machine created by &lt;strong&gt;pwnmeow&lt;/strong&gt; (&lt;a href=&#34;https://www.hackthebox.eu/home/users/profile/157669)&#34;&gt;https://www.hackthebox.eu/home/users/profile/157669)&lt;/a&gt;. We begin by&lt;/p&gt;
+Love is an easy HackTheBox Windows machine created by &lt;strong&gt;pwnmeow&lt;/strong&gt; (&lt;a href=&#34;https://www.hackthebox.eu/home/users/profile/157669)&#34;&gt;https://www.hackthebox.eu/home/users/profile/157669)&lt;/a&gt;. We begin by exploiting an SSRF vulnerability on a web page found from the certificate information leak, letting us view a webpage, accessible only from localhost. From there we exploit the AlwaysInstallElevated Windows feature in order to install a malicious .msi package, that will grant us System privileges.&lt;/p&gt;
 &lt;h1 id=&#34;initial-reconnaissance&#34;&gt;Initial Reconnaissance&lt;/h1&gt;
 &lt;h3 id=&#34;port-scanning&#34;&gt;Port Scanning:&lt;/h3&gt;
 &lt;p&gt;We can start with the standard nmap, scanning all ports:&lt;/p&gt;
