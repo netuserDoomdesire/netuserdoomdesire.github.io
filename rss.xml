@@ -17,7 +17,7 @@
         
         
         
-        <lastBuildDate>Thu, 21 Sep 2023 20:51:53 &#43;0300</lastBuildDate>
+        <lastBuildDate>Thu, 21 Sep 2023 20:57:38 &#43;0300</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://netuserdoomdesire.github.io/rss.xml" />
         
@@ -50,7 +50,7 @@ process_name == powershell.exe
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;process_name == msiexec.exe
 &amp;amp;&amp;amp;
 process_cmdline_contains == (http:// Or htpps://)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; As a reminder, using msiexec to download malicious payloads has previously been used by another malware called &lt;b&gt;Raspberry Robin&lt;/b&gt;, making this detection work for it too. &lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; As a reminder, using msiexec to execute malicious payloads has previously been used by another malware called &lt;b&gt;Raspberry Robin&lt;/b&gt;, making this detection work for it too. &lt;/p&gt;
 &lt;hr&gt;
 &lt;h1 id=&#34;detection-3-powershell-encoded-commands&#34;&gt;Detection 3: PowerShell Encoded Commands&lt;/h1&gt;
 &lt;p&gt; After spawning powershell from Microsoft Word, PurpleFox tries to run &lt;b&gt;base64&lt;/b&gt; encoded commands, in order to download a payload from the web. We can hunt for the following: &lt;/p&gt;
