@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <title type="text">Doomdesire</title>
     <subtitle type="html">MemE is a powerful and highly customizable GoHugo theme for personal blogs.</subtitle>
-    <updated>2023-09-21T22:44:51&#43;03:00</updated>
+    <updated>2023-09-22T01:17:53&#43;03:00</updated>
     <id>https://netuserdoomdesire.github.io/</id>
     <link rel="alternate" type="text/html" href="https://netuserdoomdesire.github.io/" />
     <link rel="self" type="application/atom&#43;xml" href="https://netuserdoomdesire.github.io/atom.xml" />
@@ -18,7 +18,7 @@
             <title type="text">Hunting for PurpleFox Exploit Kit</title>
             <link rel="alternate" type="text/html" href="https://netuserdoomdesire.github.io/posts/general/purplefox_hunting/" />
             <id>https://netuserdoomdesire.github.io/posts/general/purplefox_hunting/</id>
-            <updated>2023-09-21T22:35:27&#43;03:00</updated>
+            <updated>2023-09-22T01:17:40&#43;03:00</updated>
             <published>2023-09-21T10:00:00&#43;03:00</published>
             <author>
                     <name>Doomdesire</name>
@@ -80,7 +80,7 @@ process_cmdline_contains == (ipsec AND static AND policy AND qianye)
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;b&gt;As a final note here, while not the best idea to create detections based on specific names used by malware - since they are very easy to change -, this specific policy name is traced back to at least 2019 and seems to be a very standard IOC.&lt;/b&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h1 id=&#34;detection-6-netsh---allow-incoming-connection&#34;&gt;Detection 6: Netsh - Allow Incoming Connection&lt;/h1&gt;
-&lt;p&gt; After creating the IPSEC policy, PurpleFox uses &lt;b&gt;netsh&lt;/b&gt; to alter the local firewall, by allowing inbound connections to specific ports:
+&lt;p&gt; After creating the IPSEC policy, PurpleFox uses &lt;b&gt;netsh&lt;/b&gt; to alter the local firewall, by allowing inbound and outbound connections to specific ports:
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;#34;C:\Windows\SysWOW64\netsh.exe&amp;#34; ipsec static add filter filterlist=Filter1 srcaddr=any dstaddr=Me dstport=445 protocol=TCP
 &amp;#34;C:\Windows\SysWOW64\netsh.exe&amp;#34; ipsec static add filter filterlist=Filter1 srcaddr=any dstaddr=Me dstport=135 protocol=TCP
 &amp;#34;C:\Windows\SysWOW64\netsh.exe&amp;#34; ipsec static add filter filterlist=Filter1 srcaddr=any dstaddr=Me dstport=139 protocol=TCP
@@ -101,7 +101,7 @@ process_cmdline_contains == (ipsec AND static AND policy AND qianye)
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;We can hunt for the following: &lt;/p&gt;&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;process_name == netsh.exe
 &amp;amp;&amp;amp;
-process_cmdline_contains == (ipsec AND static AND add AND filter AND srcaddr AND dstaddr=me AND dstport)
+process_cmdline_contains == (ipsec AND static AND add AND filter AND srcaddr AND dstaddr AND dstport)
 &lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;references&#34;&gt;References&lt;/h1&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;https://twitter.com/bomccss/status/1704656993791959200
 https://tria.ge/230921-h86p5sgc32/behavioral2
