@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <title type="text">Doomdesire</title>
     <subtitle type="html">MemE is a powerful and highly customizable GoHugo theme for personal blogs.</subtitle>
-    <updated>2023-09-21T20:13:15&#43;03:00</updated>
+    <updated>2023-09-21T20:20:01&#43;03:00</updated>
     <id>https://netuserdoomdesire.github.io/</id>
     <link rel="alternate" type="text/html" href="https://netuserdoomdesire.github.io/" />
     <link rel="self" type="application/atom&#43;xml" href="https://netuserdoomdesire.github.io/atom.xml" />
@@ -18,20 +18,20 @@
             <title type="text">Hunting for PurpleFox Exploit Kit</title>
             <link rel="alternate" type="text/html" href="https://netuserdoomdesire.github.io/posts/general/purplefox_hunting/" />
             <id>https://netuserdoomdesire.github.io/posts/general/purplefox_hunting/</id>
-            <updated>2023-09-21T20:11:45&#43;03:00</updated>
+            <updated>2023-09-21T20:19:49&#43;03:00</updated>
             <published>2023-09-21T10:00:00&#43;03:00</published>
             <author>
                     <name>Doomdesire</name>
                     <uri>https://netuserdoomdesire.github.io/</uri>
                     </author>
             <summary type="html">Introduction While PurpleFox is not new and has been around for some years now, it appears to still be on the rise. After encountering the following two samples:
-https://tria.ge/230921-h86p5sgc32/behavioral2https://tria.ge/230919-tddlnacb87/behavioral2 i decided to share some detections logic that can be helpful in your hunt for it.</summary>
+https://tria.ge/230921-h86p5sgc32/behavioral2https://tria.ge/230919-tddlnacb87/behavioral2 i decided to share some detection logic that can be helpful in your hunt for it.</summary>
             
                 <content type="html">&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
 &lt;p&gt;While &lt;b&gt;PurpleFox&lt;/b&gt; is not new and has been around for some years now, it appears to still be on the rise. After encountering the following two samples:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;https://tria.ge/230921-h86p5sgc32/behavioral2
 https://tria.ge/230919-tddlnacb87/behavioral2
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;i decided to share some detections logic that can be helpful in your hunt for it.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;i decided to share some detection logic that can be helpful in your hunt for it.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h1 id=&#34;detection-1-suspicious-process-spawned-from-microsoft-word&#34;&gt;Detection 1: Suspicious process spawned from Microsoft Word&lt;/h1&gt;
 &lt;p&gt; The first sample had a &lt;b&gt;Microsoft Word&lt;/b&gt; document spawning powershell instances, something that is very uncommon. We can hunt for the following:&lt;/p&gt;

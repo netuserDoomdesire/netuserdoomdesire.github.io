@@ -17,7 +17,7 @@
         
         
         
-        <lastBuildDate>Thu, 21 Sep 2023 20:13:15 &#43;0300</lastBuildDate>
+        <lastBuildDate>Thu, 21 Sep 2023 20:20:01 &#43;0300</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://netuserdoomdesire.github.io/rss.xml" />
         
@@ -34,7 +34,7 @@
 &lt;p&gt;While &lt;b&gt;PurpleFox&lt;/b&gt; is not new and has been around for some years now, it appears to still be on the rise. After encountering the following two samples:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;https://tria.ge/230921-h86p5sgc32/behavioral2
 https://tria.ge/230919-tddlnacb87/behavioral2
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;i decided to share some detections logic that can be helpful in your hunt for it.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;i decided to share some detection logic that can be helpful in your hunt for it.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h1 id=&#34;detection-1-suspicious-process-spawned-from-microsoft-word&#34;&gt;Detection 1: Suspicious process spawned from Microsoft Word&lt;/h1&gt;
 &lt;p&gt; The first sample had a &lt;b&gt;Microsoft Word&lt;/b&gt; document spawning powershell instances, something that is very uncommon. We can hunt for the following:&lt;/p&gt;
